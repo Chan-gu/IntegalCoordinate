@@ -31,7 +31,7 @@ public class ServiceImpl implements Service {
 	 */
 	@Override
 	public void registryCoordinates(List<CoordinatesVO> coordinates) {
-		// TODO 검출좌표 정보 등록
+		// TODO 검출좌표 정보 등록/수정
 
 	}
 
@@ -60,6 +60,12 @@ public class ServiceImpl implements Service {
 	public ResultPlaceVO getTagetPlace(String vID) {
 		// TODO 대상 아이디의 최종 위치정보
 		return null;
+	}
+
+	@Override
+	public void removeCoordinates(List<CoordinatesVO> coordinates) {
+		// TODO 검출좌표 정보 삭제
+		
 	}
 
 }

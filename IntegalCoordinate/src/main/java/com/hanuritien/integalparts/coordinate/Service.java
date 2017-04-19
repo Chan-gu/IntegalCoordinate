@@ -15,9 +15,15 @@ import com.hanuritien.integalparts.coordinate.model.ResultPlaceVO;
 public interface Service {
 	/**
 	 * @param targets
-	 * 검출좌표 정보 등록
+	 * 검출좌표 정보 등록/수정
 	 */
 	void registryCoordinates(List<CoordinatesVO> coordinates);
+	
+	/**
+	 * @param coordinates
+	 * 검출좌표 정보 삭제
+	 */
+	void removeCoordinates(List<CoordinatesVO> coordinates);
 	/**
 	 * @param rlocation
 	 * 위치정보 수신

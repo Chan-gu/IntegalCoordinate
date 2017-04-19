@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
+import com.hanuritien.integalparts.coordinate.CoordinateInOut;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,4 +52,16 @@ public class RLocationVO implements Serializable {
 	 */
 	@Getter @Setter
 	private DateTime timeSighting;
+	
+	/**
+	 * 인아웃 여부
+	 */
+	@Getter @Setter
+	private CoordinateInOut inout;
+	
+	/**
+	 * 일치 대상
+	 */
+	@Getter @Setter
+	private String match;
 }

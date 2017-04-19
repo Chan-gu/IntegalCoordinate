@@ -46,7 +46,7 @@ public class ResultPlaceVO implements Serializable {
 	 * 검출 반환 아이디 리스트
 	 */
 	@Getter @Setter
-	private List<String> plances;
+	private List<String> matches;
 	
 	/**
 	 * 데이터 발생시간

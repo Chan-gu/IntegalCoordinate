@@ -17,7 +17,8 @@ public class CoordinatesVO implements Serializable {
 	private static final long serialVersionUID = 207348541598929975L;
 
 	/**
-	 * 검출 반환 ID 정보
+	 * 검출 대상
+	 * 저장 키
 	 */
 	@Getter @Setter
 	private String id;
