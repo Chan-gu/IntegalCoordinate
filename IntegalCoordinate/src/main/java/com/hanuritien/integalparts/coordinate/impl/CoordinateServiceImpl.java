@@ -8,10 +8,11 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.github.davidmoten.rtree.RTree;
 import com.github.davidmoten.rtree.geometry.Geometry;
-import com.hanuritien.integalparts.coordinate.Service;
+import com.hanuritien.integalparts.coordinate.CoordinateService;
 import com.hanuritien.integalparts.coordinate.model.CoordinatesVO;
 import com.hanuritien.integalparts.coordinate.model.RLocationVO;
 import com.hanuritien.integalparts.coordinate.model.ResultPlaceVO;
@@ -20,9 +21,9 @@ import com.hanuritien.integalparts.coordinate.model.ResultPlaceVO;
  * @author changu
  * 좌표 위치 검출 서비스 구현
  */
-@org.springframework.stereotype.Service("service")
-public class ServiceImpl implements Service {
-	Logger logger = LoggerFactory.getLogger(ServiceImpl.class);
+@Service("coordinateService")
+public class CoordinateServiceImpl implements CoordinateService {
+	Logger logger = LoggerFactory.getLogger(CoordinateServiceImpl.class);
 	
 	RTree<CoordinatesVO, Geometry> tree;
 

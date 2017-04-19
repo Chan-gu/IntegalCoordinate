@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,13 +26,46 @@ import com.hanuritien.integalparts.coordinate.redis.RedisMessageSubscriber;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
+@PropertySource("classpath:integalcoordinate.properties")
+@ComponentScan("com.hanuritien.integalparts.coordinate")
 public class AppConfig {
-	@Autowired
-	private Global global;
+	
+	/**
+	 * Rtree상 선 검출 크기(단위 : m)
+	 * 선 검출 최대 크기
+	 */
+	@Value("${Coordinate.Line.Base.BufferSize}")
+	public String LINEBUFFSIZE;
+	
+	/**
+	 * Redis 호스트 명칭
+	 */
+	//@Value("${Coordinate.Redis.URLs:#{localhost:6379}}")
+	@Value("${Coordinate.Redis.URLs}")
+	public String REDISURLS;
+		
+	/**
+	 * Redis MaxRedirects
+	 */
+	@Value("${Coordinate.Redis.MaxRedirects}")
+	public String REDISMAXREDIRECTS;
+	
+	/**
+	 * Redis PoolSize
+	 */
+	@Value("${Coordinate.Redis.PoolSize}")
+	public String REDISPOOLSIZE;
+	
+	/**
+	 * Redis Channel
+	 */
+	//@Value("${Coordinate.Redis.Queue.Channel:#{pubsub:queuelocations}}")
+	@Value("${Coordinate.Redis.Queue.Channel}")
+	public String REDISQUEUECHANNEL;
 
 	@Bean
 	public JedisConnectionFactory connectionFactory() {
-		String[] urls = global.REDISURLS.trim().split(",");
+		String[] urls = REDISURLS.trim().split(",");
 
 		List<String> servers = new ArrayList<String>();
 		for (String tmp : urls) {
@@ -35,13 +73,12 @@ public class AppConfig {
 				servers.add(tmp);
 			}
 		}
-
 		RedisClusterConfiguration clusterConfig = new RedisClusterConfiguration(servers);
-		clusterConfig.setMaxRedirects(global.REDISMAXREDIRECTS);
+		clusterConfig.setMaxRedirects(Integer.parseInt(REDISMAXREDIRECTS));
 				
 		JedisConnectionFactory connectionFactory = new JedisConnectionFactory(clusterConfig);
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
-		poolConfig.setMaxTotal(global.REDISPOOLSIZE);
+		poolConfig.setMaxTotal(Integer.parseInt(REDISPOOLSIZE));
 		connectionFactory.setPoolConfig(poolConfig);
 		return connectionFactory;
 	}
@@ -74,6 +111,11 @@ public class AppConfig {
 
     @Bean
     ChannelTopic topic() {
-        return new ChannelTopic(global.REDISQUEUECHANNEL);
+        return new ChannelTopic(REDISQUEUECHANNEL);
     }
+    
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 }

@@ -12,7 +12,7 @@ import com.hanuritien.integalparts.coordinate.model.ResultPlaceVO;
  * @author changu
  * 좌표 위치 검출 서비스 
  */
-public interface Service {
+public interface CoordinateService {
 	/**
 	 * @param targets
 	 * 검출좌표 정보 등록/수정
