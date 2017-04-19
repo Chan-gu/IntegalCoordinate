@@ -3,20 +3,19 @@ package com.hanuritien.integalparts.coordinate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import com.hanuritien.integalparts.coordinate.redis.MessagePublisher;
@@ -24,6 +23,8 @@ import com.hanuritien.integalparts.coordinate.redis.RedisMessagePublisher;
 import com.hanuritien.integalparts.coordinate.redis.RedisMessageSubscriber;
 
 import redis.clients.jedis.JedisPoolConfig;
+
+//import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 @PropertySource("classpath:integalcoordinate.properties")
@@ -87,7 +88,9 @@ public class AppConfig {
 	public RedisTemplate<String, Object> redisTemplate() {
 		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
 		redisTemplate.setConnectionFactory(connectionFactory());
-		redisTemplate.setKeySerializer(new StringRedisSerializer());
+		//redisTemplate.setDefaultSerializer(new StringRedisSerializer());
+		redisTemplate.setDefaultSerializer(new GenericJackson2JsonRedisSerializer());
+
 		return redisTemplate;
 	}
 	
@@ -101,6 +104,7 @@ public class AppConfig {
         final RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory());
         container.addMessageListener(messageListener(), topic());
+
         return container;
     }
 

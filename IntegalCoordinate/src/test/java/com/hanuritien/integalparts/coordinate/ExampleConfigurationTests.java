@@ -40,6 +40,7 @@ public class ExampleConfigurationTests {
         redisMessagePublisher.publish(message);
         Thread.sleep(100);
         String queue = RedisMessageSubscriber.queue.take();
+        System.out.println(queue);
         assertTrue(queue.contains(message));
     }
 	
