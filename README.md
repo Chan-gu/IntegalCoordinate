@@ -1,2 +1,2 @@
-# IntegalCoordinate
-½Ç½Ã°£ ÁÂÇ¥¿¡ ´ëÇÑ Geofence ºĞ¼®
+ï»¿# IntegalCoordinate
+ì‹¤ì‹œê°„ ì¢Œí‘œì— ëŒ€í•œ Geofence ë¶„ì„
