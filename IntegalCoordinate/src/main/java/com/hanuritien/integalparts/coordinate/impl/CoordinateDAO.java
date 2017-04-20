@@ -15,6 +15,9 @@ public class CoordinateDAO {
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;
 	
+	@Autowired
+	RedisTemplate<String, Object> redisReadTemplate;
+	
 	private final String COORDINATE_KEY = "CoordinateCheck";
 	
 	void save(CoordinatesVO input) {
@@ -22,11 +25,11 @@ public class CoordinateDAO {
 	}
 	
 	CoordinatesVO find(String id) {
-		return (CoordinatesVO)this.redisTemplate.opsForHash().get(COORDINATE_KEY, id);
+		return (CoordinatesVO)this.redisReadTemplate.opsForHash().get(COORDINATE_KEY, id);
 	}
 	
 	List<CoordinatesVO> findAll() {
-		return new ArrayList(this.redisTemplate.opsForHash().entries(COORDINATE_KEY).values());
+		return new ArrayList(this.redisReadTemplate.opsForHash().entries(COORDINATE_KEY).values());
 	}
 	
 	void delete(String id) {

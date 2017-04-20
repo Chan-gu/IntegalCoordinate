@@ -38,18 +38,18 @@ public class AppConfig {
 	@Value("${Coordinate.Line.Base.BufferSize}")
 	public String LINEBUFFSIZE;
 	
+
 	/**
-	 * Redis 호스트 명칭
+	 * Redis 쓰기 주소
 	 */
-	//@Value("${Coordinate.Redis.URLs:#{localhost:6379}}")
-	@Value("${Coordinate.Redis.URLs}")
-	public String REDISURLS;
-		
+	@Value("${Coordinate.Redis.Write.URLs}")
+	public String REDISWRITEURLS;
+	
 	/**
-	 * Redis MaxRedirects
+	 * Redis 쓰기 주소
 	 */
-	@Value("${Coordinate.Redis.MaxRedirects}")
-	public String REDISMAXREDIRECTS;
+	@Value("${Coordinate.Redis.Read.URLs}")
+	public String REDISREADURLS;
 	
 	/**
 	 * Redis PoolSize
@@ -58,37 +58,88 @@ public class AppConfig {
 	public String REDISPOOLSIZE;
 	
 	/**
+	 * Redis Password
+	 */
+	@Value("${Coordinate.Redis.Password}")
+	public String REDISPASSWORD;
+	
+	/**
+	 * Redis Timeout
+	 */
+	@Value("${Coordinate.Redis.Timeout}")
+	public String REDISTIMEOUT;	
+	/**
 	 * Redis Channel
 	 */
 	//@Value("${Coordinate.Redis.Queue.Channel:#{pubsub:queuelocations}}")
 	@Value("${Coordinate.Redis.Queue.Channel}")
 	public String REDISQUEUECHANNEL;
 
+	/**
+	 * @return
+	 * 읽기/쓰기
+	 */
 	@Bean
 	public JedisConnectionFactory connectionFactory() {
-		String[] urls = REDISURLS.trim().split(",");
-
-		List<String> servers = new ArrayList<String>();
-		for (String tmp : urls) {
-			if (tmp != null && !tmp.isEmpty()) {
-				servers.add(tmp);
-			}
-		}
-		RedisClusterConfiguration clusterConfig = new RedisClusterConfiguration(servers);
-		clusterConfig.setMaxRedirects(Integer.parseInt(REDISMAXREDIRECTS));
+		String[] urls = REDISWRITEURLS.trim().split(":");
 				
-		JedisConnectionFactory connectionFactory = new JedisConnectionFactory(clusterConfig);
+		JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+		connectionFactory.setHostName(urls[0]);
+		connectionFactory.setPort(Integer.parseInt(urls[1]));
+		connectionFactory.setTimeout(Integer.parseInt(REDISTIMEOUT));
+		
+		if (!REDISPASSWORD.isEmpty())
+			connectionFactory.setPassword(REDISPASSWORD);
+		
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
 		poolConfig.setMaxTotal(Integer.parseInt(REDISPOOLSIZE));
 		connectionFactory.setPoolConfig(poolConfig);
 		return connectionFactory;
 	}
+	
+	/**
+	 * @return
+	 * 읽기 전용
+	 */
+	@Bean
+	public JedisConnectionFactory connectionReadFactory() {
+		String[] urls = REDISREADURLS.trim().split(":");
+				
+		JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+		connectionFactory.setHostName(urls[0]);
+		connectionFactory.setPort(Integer.parseInt(urls[1]));
+		connectionFactory.setTimeout(Integer.parseInt(REDISTIMEOUT));
+		
+		if (!REDISPASSWORD.isEmpty())
+			connectionFactory.setPassword(REDISPASSWORD);
+		
+		JedisPoolConfig poolConfig = new JedisPoolConfig();
+		poolConfig.setMaxTotal(Integer.parseInt(REDISPOOLSIZE));
+		connectionFactory.setPoolConfig(poolConfig);
+		return connectionFactory;
+	}	
 
+	/**
+	 * @return
+	 * 읽기 쓰기
+	 */
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate() {
 		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
 		redisTemplate.setConnectionFactory(connectionFactory());
-		//redisTemplate.setDefaultSerializer(new StringRedisSerializer());
+		redisTemplate.setDefaultSerializer(new GenericJackson2JsonRedisSerializer());
+
+		return redisTemplate;
+	}
+	
+	/**
+	 * @return
+	 * 읽기
+	 */
+	@Bean
+	public RedisTemplate<String, Object> redisReadTemplate() {
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
+		redisTemplate.setConnectionFactory(connectionReadFactory());
 		redisTemplate.setDefaultSerializer(new GenericJackson2JsonRedisSerializer());
 
 		return redisTemplate;
