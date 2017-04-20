@@ -1,9 +1,7 @@
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\CoordinateServiceImpl.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\CoordinatesServiceImpl.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\CoordinateDAO.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\redis\MessagePublisher.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\AppConfig.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\package-info.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\redis\RedisMessageSubscriber.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\redis\package-info.java
-D:\sts-bundle\works\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\redis\RedisMessagePublisher.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\CoordinateServiceImpl.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\AppConfig.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\redis\package-info.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\redis\RedisMessageSubscriber.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\CoordinateDAO.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\package-info.java
+D:\GitHubClone\IntegalCoordinate\IntegalCoordinateImpl\src\main\java\com\hanuritien\integalparts\coordinate\impl\CoordinatesServiceImpl.java

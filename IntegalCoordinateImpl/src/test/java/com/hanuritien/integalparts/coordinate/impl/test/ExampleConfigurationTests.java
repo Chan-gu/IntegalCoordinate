@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hanuritien.integalparts.coordinate.CoordinateService;
 import com.hanuritien.integalparts.coordinate.impl.AppConfig;
-import com.hanuritien.integalparts.coordinate.impl.redis.RedisMessagePublisher;
 import com.hanuritien.integalparts.coordinate.impl.redis.RedisMessageSubscriber;
 
 @ContextConfiguration(classes = AppConfig.class)
@@ -30,18 +29,11 @@ public class ExampleConfigurationTests {
 		System.out.println("123213");
 		assertNotNull(service);
 	}
-	
-    @Autowired
-    private RedisMessagePublisher redisMessagePublisher;
 
     @Test
     public void testOnMessage() throws Exception {
-        String message = "Message " + UUID.randomUUID();
-        redisMessagePublisher.publish(message);
-        Thread.sleep(100);
         String queue = RedisMessageSubscriber.queue.take();
         System.out.println(queue);
-        assertTrue(queue.contains(message));
     }
 	
 }

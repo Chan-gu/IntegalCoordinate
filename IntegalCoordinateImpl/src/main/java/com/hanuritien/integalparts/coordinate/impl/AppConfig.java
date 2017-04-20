@@ -18,8 +18,6 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.hanuritien.integalparts.coordinate.impl.redis.MessagePublisher;
-import com.hanuritien.integalparts.coordinate.impl.redis.RedisMessagePublisher;
 import com.hanuritien.integalparts.coordinate.impl.redis.RedisMessageSubscriber;
 
 import redis.clients.jedis.JedisPoolConfig;
@@ -159,11 +157,11 @@ public class AppConfig {
         return container;
     }
 
-    @Bean
+/*    @Bean
     MessagePublisher redisPublisher() {
         return new RedisMessagePublisher(redisTemplate(), topic());
     }
-
+*/
     @Bean
     ChannelTopic topic() {
         return new ChannelTopic(REDISQUEUECHANNEL);
