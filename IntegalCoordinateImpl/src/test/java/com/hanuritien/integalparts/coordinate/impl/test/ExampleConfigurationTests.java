@@ -29,8 +29,6 @@ public class ExampleConfigurationTests {
 	public void testSimpleProperties() throws Exception {
 		System.out.println("123213");
 		assertNotNull(service);
-//		sertNull(service);
-	
 	}
 	
     @Autowired
