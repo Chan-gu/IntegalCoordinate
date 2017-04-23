@@ -43,5 +43,5 @@ public class CoordinatesVO implements Serializable {
 	 * 도형 : 무시
 	 */
 	@Getter @Setter
-	private float radius;
+	private Float radius;
 }
