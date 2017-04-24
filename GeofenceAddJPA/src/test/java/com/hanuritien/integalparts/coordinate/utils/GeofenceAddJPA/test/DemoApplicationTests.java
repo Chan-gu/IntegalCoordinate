@@ -2,6 +2,8 @@ package com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,7 +17,8 @@ import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.Coordin
 @ContextConfiguration(classes=AppConfig.class) 
 @Component
 public class DemoApplicationTests {
-
+	Logger logger = LoggerFactory.getLogger(DemoApplicationTests.class);
+	
 	@Autowired 
 	private CoordinatesRepository coordinatesRepository;
 	 	
@@ -24,7 +27,14 @@ public class DemoApplicationTests {
 		Coordinates tmp = new Coordinates();
 		tmp.setType("circle");
 		coordinatesRepository.save(tmp);
+		tmp = new Coordinates();
+		tmp.setType("circle");
+		coordinatesRepository.save(tmp);
 		coordinatesRepository.flush();
+		
+		for(Coordinates t : coordinatesRepository.findAll()) {
+			logger.debug("Asdf", t.toString());
+		}
 	}
 
 }

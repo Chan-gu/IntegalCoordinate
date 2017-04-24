@@ -9,7 +9,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Entity(name = "tbl_loadedcoordinates")
 public class LoadedCoordinates extends AbstractPersistable<Integer>{
 	

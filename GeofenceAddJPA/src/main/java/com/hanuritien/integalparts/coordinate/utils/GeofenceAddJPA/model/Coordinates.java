@@ -15,7 +15,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Entity(name = "tbl_coordinates")
 public class Coordinates extends AbstractPersistable<Integer> {
 	private static final long serialVersionUID = -7484361818474640499L;
