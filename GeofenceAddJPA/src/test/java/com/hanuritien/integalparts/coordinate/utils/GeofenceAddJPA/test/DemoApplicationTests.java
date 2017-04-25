@@ -40,21 +40,37 @@ public class DemoApplicationTests {
 		coordinatesRepository.save(tmp);
 		coordinatesRepository.flush();*/
 		
-		for(LoadedCoordinates t : loadedCoordinatesRepository.findAll()) {
+/*		for(LoadedCoordinates t : loadedCoordinatesRepository.findAll()) {
 			logger.debug( t.toString());
 		}
 		
 		for(Coordinates t : coordinatesRepository.findAll()) {
 			logger.debug( t.toString());
-		}
+		}*/
+		
+		Coordinates tmp = new Coordinates();
+		tmp.setType("circle");
+		LoadedCoordinates tt = new LoadedCoordinates();
+		tt.setCoordinates(tmp);
+		tmp.setChild(tt);
+		coordinatesRepository.save(tmp);
+		coordinatesRepository.flush();
+		
 		
 		logger.debug( "findNotLoaded ========================>");
-		for(Coordinates t : coordinatesRepository.findNotLoaded()) {
+		for(LoadedCoordinates t : loadedCoordinatesRepository.findAll()) {
 			logger.debug( t.toString());
 		}
 		logger.debug( "========================> Endded ");
 		
+		coordinatesRepository.delete(tmp);
+		coordinatesRepository.flush();
 		
+		logger.debug( "findNotLoaded ========================>");
+		for(LoadedCoordinates t : loadedCoordinatesRepository.findAll()) {
+			logger.debug( t.toString());
+		}
+		logger.debug( "========================> Endded ");
 	}
 
 }

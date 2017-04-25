@@ -2,16 +2,18 @@ package com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import com.esri.core.geometry.Geometry;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hanuritien.integalparts.coordinate.model.CoordinateType;
+import com.hanuritien.integalparts.coordinate.model.CoordinatesVO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,5 +43,31 @@ public class Coordinates extends AbstractPersistable<Integer> {
 	@PrimaryKeyJoinColumn
 	@Setter @Getter
 	private LoadedCoordinates child;
+	
+	public Coordinates(){}
+	
+	public Coordinates(CoordinatesVO arg) throws Exception {
+		this.targetID = arg.getId();
+		this.type = arg.getType().toValue();
+		this.geometry =  new ObjectMapper().writeValueAsString(arg.getGeometry());
+		this.radius = arg.getRadius();
+	}
+	
+	/**
+	 * @return
+	 * @throws Exception
+	 * 실 Geofence 객체로 변경
+	 */
+	public CoordinatesVO toCoordinatesVO() throws Exception {
+		CoordinatesVO ret = new CoordinatesVO();
+		ret.setSaveKey(this.getId());
+		ret.setId(this.targetID);
+		ret.setRadius(this.radius);
+		ret.setType(CoordinateType.forValue(this.type));
+		Geometry tmpGeometry =  new ObjectMapper().readValue(this.geometry, Geometry.class);
+		ret.setGeometry(tmpGeometry);
+		
+		return ret;
+	}
 	
 }
