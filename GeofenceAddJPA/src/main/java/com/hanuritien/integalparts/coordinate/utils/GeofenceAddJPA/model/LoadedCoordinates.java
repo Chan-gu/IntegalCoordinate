@@ -18,7 +18,7 @@ import lombok.ToString;
 public class LoadedCoordinates extends AbstractPersistable<Integer>{
 	private static final long serialVersionUID = 5036956919836132856L;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "coordinatesID")
 	@Setter @Getter
 	private Coordinates coordinates;

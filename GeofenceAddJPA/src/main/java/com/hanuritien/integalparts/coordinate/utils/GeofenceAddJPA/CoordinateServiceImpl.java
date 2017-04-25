@@ -83,14 +83,31 @@ public class CoordinateServiceImpl implements GeofenceService{
 
 	@Override
 	public void deleteData(Collection<CoordinatesVO> list) {
-		// TODO Auto-generated method stub
+		for (CoordinatesVO tmp : list) {
+			try {
+				Coordinates t = coorRep.findOne(tmp.getSaveKey());
+				
+				if (t != null)
+					coorRep.delete(t);
+			} catch (Exception e) {
+				logger.error("CoordinateServiceImpl.deleteData()", e);
+			}
+		}
+		coorRep.flush();
 		
 	}
 
 	@Override
 	public Collection<CoordinatesVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CoordinatesVO> ret = new ArrayList<CoordinatesVO>();
+		for(Coordinates t : coorRep.findByTargetID(id)) {
+			try {
+				ret.add(t.toCoordinatesVO());
+			} catch (Exception e) {
+				logger.error("CoordinateServiceImpl.findById()", e);
+			}
+		}
+		return ret;
 	}
 
 }
