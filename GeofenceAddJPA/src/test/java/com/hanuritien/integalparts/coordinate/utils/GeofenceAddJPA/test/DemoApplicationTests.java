@@ -48,7 +48,7 @@ public class DemoApplicationTests {
 			logger.debug( t.toString());
 		}*/
 		
-		Coordinates tmp = new Coordinates();
+/*		Coordinates tmp = new Coordinates();
 		tmp.setType("circle");
 		LoadedCoordinates tt = new LoadedCoordinates();
 		tt.setCoordinates(tmp);
@@ -65,7 +65,7 @@ public class DemoApplicationTests {
 		
 		coordinatesRepository.delete(tmp);
 		coordinatesRepository.flush();
-		
+		*/
 		logger.debug( "findNotLoaded ========================>");
 		for(LoadedCoordinates t : loadedCoordinatesRepository.findAll()) {
 			logger.debug( t.toString());
