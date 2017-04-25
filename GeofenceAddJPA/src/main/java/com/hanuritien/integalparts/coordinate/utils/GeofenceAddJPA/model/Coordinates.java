@@ -1,16 +1,16 @@
 package com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model;
 
-
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import lombok.Getter;
@@ -33,17 +33,13 @@ public class Coordinates extends AbstractPersistable<Integer> {
 	@Setter @Getter
 	private Float radius;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@Setter @Getter
-	private Date createDate = new Date();
+	private DateTime createDate = DateTime.now();
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,  optional = true)
 	@PrimaryKeyJoinColumn
 	@Setter @Getter
 	private LoadedCoordinates child;
 	
-	@Override
-	public String toString() {
-		return super.toString();
-	}
 }

@@ -58,6 +58,16 @@
 			<artifactId>GeofenceAddJPA</artifactId>
 			<version>0.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.hanuritien.integalparts.coordinate.utils</groupId>
+			<artifactId>GeofenceAddJPA</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+<dependency>
+	<groupId>org.mariadb.jdbc</groupId>
+	<artifactId>mariadb-java-client</artifactId>
+	<version>1.5.9</version>
+</dependency>		
 	</dependencies>
 
 	<build>

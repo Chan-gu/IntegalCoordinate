@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.AppConfig;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.Coordinates;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.CoordinatesRepository;
+import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.LoadedCoordinates;
+import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.LoadedCoordinatesRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=AppConfig.class) 
@@ -21,20 +23,38 @@ public class DemoApplicationTests {
 	
 	@Autowired 
 	private CoordinatesRepository coordinatesRepository;
+	
+	@Autowired 
+	private LoadedCoordinatesRepository loadedCoordinatesRepository;	
 	 	
 	@Test
 	public void contextLoads() {
-		Coordinates tmp = new Coordinates();
+/*		Coordinates tmp = new Coordinates();
 		tmp.setType("circle");
+		LoadedCoordinates tt = new LoadedCoordinates();
+		tt.setCoordinates(tmp);
+		tmp.setChild(tt);
 		coordinatesRepository.save(tmp);
 		tmp = new Coordinates();
 		tmp.setType("circle");
 		coordinatesRepository.save(tmp);
-		coordinatesRepository.flush();
+		coordinatesRepository.flush();*/
+		
+		for(LoadedCoordinates t : loadedCoordinatesRepository.findAll()) {
+			logger.debug( t.toString());
+		}
 		
 		for(Coordinates t : coordinatesRepository.findAll()) {
-			logger.debug("Asdf", t.toString());
+			logger.debug( t.toString());
 		}
+		
+		logger.debug( "findNotLoaded ========================>");
+		for(Coordinates t : coordinatesRepository.findNotLoaded()) {
+			logger.debug( t.toString());
+		}
+		logger.debug( "========================> Endded ");
+		
+		
 	}
 
 }
