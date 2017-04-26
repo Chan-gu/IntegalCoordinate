@@ -28,15 +28,6 @@ public class CoordinateServiceImpl implements CoordinateService {
 	RTree<CoordinatesVO, Geometry> tree;
 
 	/* (non-Javadoc)
-	 * @see com.hanuritien.integalparts.coordinate.Service#registryCoordinates(java.util.List)
-	 */
-	@Override
-	public void registryCoordinates(List<CoordinatesVO> coordinates) {
-		// TODO 검출좌표 정보 등록/수정
-
-	}
-
-	/* (non-Javadoc)
 	 * @see com.hanuritien.integalparts.coordinate.Service#listenLocation(com.hanuritien.integalparts.coordinate.model.RLocationVO)
 	 */
 	@Override
@@ -61,12 +52,6 @@ public class CoordinateServiceImpl implements CoordinateService {
 	public ResultPlaceVO getTagetPlace(String vID) {
 		// TODO 대상 아이디의 최종 위치정보
 		return null;
-	}
-
-	@Override
-	public void removeCoordinates(List<CoordinatesVO> coordinates) {
-		// TODO 검출좌표 정보 삭제
-		
 	}
 
 }
