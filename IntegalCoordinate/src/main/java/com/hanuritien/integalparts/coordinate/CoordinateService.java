@@ -9,28 +9,33 @@ import com.hanuritien.integalparts.coordinate.model.RLocationVO;
 import com.hanuritien.integalparts.coordinate.model.ResultPlaceVO;
 
 /**
- * @author changu
  * 좌표 위치 검출 서비스 
+ * @author changu
  */
 public interface CoordinateService {
 	/**
-	 * @param rlocation
 	 * 위치정보 수신
+	 * @param rlocation
 	 */
 	void listenLocation(RLocationVO rlocation);
 	/**
+	 * 위치정보 수신
 	 * @param timeSighting 데이터 발생시간
 	 * @param vID 대상 아이디 
 	 * @param longitude 경도 x
 	 * @param latitude 위도 y
-	 * 위치정보 수신
 	 */
 	void listenLocation(DateTime timeSighting, String vID, float longitude, float latitude);
 	
 	/**
+	 * 대상 아이디의 최종 위치정보
 	 * @param vID
 	 * @return
-	 * 대상 아이디의 최종 위치정보
 	 */
 	ResultPlaceVO getTagetPlace(String vID);
+	
+	/**
+	 * 전체 데이터 다시 로드
+	 */
+	void reloadData();
 }

@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 @Transactional
 public interface CoordinatesRepository extends JpaRepository<Coordinates, Integer> {
@@ -20,6 +21,6 @@ public interface CoordinatesRepository extends JpaRepository<Coordinates, Intege
 	 * @return
 	 * 대상 아이디 값으로 검색
 	 */
-	@Query("SELECT c FROM tbl_coordinates c WHERE c.targetID = ?#{[0]}")
-	Collection<Coordinates> findByTargetID(String id);
+	@Query("SELECT c FROM tbl_coordinates c WHERE c.targetID = :vid")
+	Collection<Coordinates> findByTargetID(@Param("vid")String id);
 }

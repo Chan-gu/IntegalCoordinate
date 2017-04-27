@@ -6,35 +6,41 @@ import com.hanuritien.integalparts.coordinate.model.CoordinatesVO;
 
 public interface GeofenceService {
 	/**
-	 * @return
 	 * 전체 데이터 호출
+	 * @return
 	 */
 	Collection<CoordinatesVO> getAll();
 	
 	/**
+	 * 삭제 데이터 호출
 	 * @return
+	 */
+	Collection<CoordinatesVO> getRemove();
+	
+	/**
 	 * 신규 데이터 호출
+	 * @return
 	 */
 	Collection<CoordinatesVO> getNews();
 	/**
-	 * @param list
 	 * 신규 데이터 처리완료
+	 * @param list
 	 */
 	void doneLoaded(Collection<CoordinatesVO> list);
 	/**
+	 * 신규 펜스 등록	 * 
 	 * @param list
-	 * 신규 펜스 등록
 	 */
 	void insertData(Collection<CoordinatesVO> list);
 	/**
-	 * @param list
 	 * 기존 펜스 삭제
+	 * @param list
 	 */
 	void deleteData(Collection<CoordinatesVO> list);
 	/**
+	 * 특정 펜스 찾기
 	 * @param id
 	 * @return
-	 * 특정 펜스 찾기
 	 */
 	Collection<CoordinatesVO> findById(String id);
 }

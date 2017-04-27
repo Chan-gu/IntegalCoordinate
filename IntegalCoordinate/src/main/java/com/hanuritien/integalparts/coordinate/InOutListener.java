@@ -6,8 +6,8 @@ package com.hanuritien.integalparts.coordinate;
 import java.util.Collection;
 
 /**
- * @author changu
  * 출도착 리스너
+ * @author changu
  */
 public interface InOutListener {
 

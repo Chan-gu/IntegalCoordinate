@@ -44,6 +44,11 @@ public class Coordinates extends AbstractPersistable<Integer> {
 	@Setter @Getter
 	private LoadedCoordinates child;
 	
+	@OneToOne(cascade = CascadeType.ALL,  optional = true)
+	@PrimaryKeyJoinColumn
+	@Setter @Getter	
+	private RemoveCoordinates rchild;
+	
 	public Coordinates(){}
 	
 	public Coordinates(CoordinatesVO arg) throws Exception {
