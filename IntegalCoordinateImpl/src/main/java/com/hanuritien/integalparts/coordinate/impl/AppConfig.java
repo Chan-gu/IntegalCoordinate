@@ -25,25 +25,7 @@ import com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.StateService
 @PropertySource("classpath:integalcoordinate.properties")
 @ComponentScan("com.hanuritien.integalparts.coordinate")
 public class AppConfig {
-	
-	@Bean
-	@SuppressWarnings("resource")
-	public StateService getStateService() {
-		StateService ret = null;
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(InOutCheckerJPAConfig.class);
-		ret = applicationContext.getBean(StateServiceImpl.class);
-		return ret;
-	}
-	
-	@Bean
-	@SuppressWarnings("resource")
-	public GeofenceService getGeofenceService() {
-		GeofenceService ret = null;
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(GeofenceAddJPAConfig.class);
-		ret = applicationContext.getBean(GeofenceServiceImpl.class);
-		return ret;
-	}
-    
+
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 		return new PropertySourcesPlaceholderConfigurer();

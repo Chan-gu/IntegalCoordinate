@@ -1,7 +1,6 @@
 package com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 

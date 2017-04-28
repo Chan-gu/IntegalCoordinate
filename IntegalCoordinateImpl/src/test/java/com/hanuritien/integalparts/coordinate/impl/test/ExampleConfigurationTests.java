@@ -43,7 +43,7 @@ public class ExampleConfigurationTests {
 		assertNotNull(service);
 	}
 
-	@Test
+/*	@Test
 	public void inoutcheck() {
 		
 		List<String> pids = new ArrayList<String>();
@@ -90,6 +90,6 @@ public class ExampleConfigurationTests {
 			logger.debug(tmp);
 		}
 		logger.debug("===================================");
-	}
+	}*/
 	
 }

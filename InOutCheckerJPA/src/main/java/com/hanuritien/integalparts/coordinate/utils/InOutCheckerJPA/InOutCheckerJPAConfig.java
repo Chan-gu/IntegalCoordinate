@@ -3,6 +3,7 @@ package com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +29,23 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA")
 @EntityScan("com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.model")
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = {"com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA"})
 @EnableTransactionManagement
+@EnableJpaRepositories(
+		basePackages="com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA",
+		entityManagerFactoryRef = "entityManagerFactoryInOutChecker", 
+		transactionManagerRef = "transactionManagerInOutChecker")
 public class InOutCheckerJPAConfig {
 	private static final String DEFAULT_NAMING_STRATEGY = "org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy";
 
-    @Autowired
+	@PersistenceContext
     private Environment env;
 	
-	@Bean
+	@Bean(name="articleDataSource")
 	@ConfigurationProperties(prefix = "datasource.inoutcheckerjpa")
 	public DataSource articleDataSource() {
 		return DataSourceBuilder.create().build();
 	}
-	@Bean(name = "entityManagerFactory")
+	@Bean(name = "entityManagerFactoryInOutChecker")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 
 		Map<String, String> propertiesHashMap = new HashMap<String, String>();
@@ -57,14 +61,10 @@ public class InOutCheckerJPAConfig {
 				.build();
 	}
 	
-	@Bean(name = "transactionManager")
+	@Primary
+	@Bean(name = "transactionManagerInOutChecker")
 	PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
 		return new JpaTransactionManager(entityManagerFactory(builder).getObject());
 	}
 
-	@Configuration
-	@EnableJpaRepositories(basePackages="com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.model",
-			entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
-	static class DbInOutCheckerJpaRepositoriesConfig {
-	}
 }

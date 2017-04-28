@@ -1,13 +1,12 @@
 package com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model;
 import java.util.Collection;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+@Transactional(value="transactionManagerGeofence")
 public interface CoordinatesRepository extends JpaRepository<Coordinates, Integer> {
 	/**
 	 * @return

@@ -31,21 +31,24 @@ import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilde
 @ComponentScan("com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA")
 @EntityScan("com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model")
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = {"com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA"})
 @EnableTransactionManagement
+@EnableJpaRepositories(
+		basePackages="com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA",
+		entityManagerFactoryRef = "entityManagerFactoryGeofence", 
+		transactionManagerRef = "transactionManagerGeofence")
 public class GeofenceAddJPAConfig {
 	private static final String DEFAULT_NAMING_STRATEGY = "org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy";
 
     @Autowired
     private Environment env;
 	
-	@Bean
+ 	@Bean(name="GeofenceDataSource")
 	@ConfigurationProperties(prefix = "datasource.geofenceaddjpa")
-	public DataSource articleDataSource() {
+	public DataSource GeofenceDataSource() {
 		return DataSourceBuilder.create().build();
 	}
 
-	@Bean(name = "entityManagerFactory")
+	@Bean(name = "entityManagerFactoryGeofence")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 
 		Map<String, String> propertiesHashMap = new HashMap<String, String>();
@@ -55,21 +58,15 @@ public class GeofenceAddJPAConfig {
 		propertiesHashMap.put("hibernate.dialect",
 		          env.getProperty("datasource.geofenceaddjpa.hibernate.dialect"));		
 
-		return builder.dataSource(articleDataSource())
+		return builder.dataSource(GeofenceDataSource())
 				.packages("com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model")
 				.properties(propertiesHashMap)
 				.build();
 	}
 
-	@Bean(name = "transactionManager")
+	@Primary
+	@Bean(name = "transactionManagerGeofence")
 	PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
 		return new JpaTransactionManager(entityManagerFactory(builder).getObject());
 	}
-
-	@Configuration
-	@EnableJpaRepositories(basePackages="com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model",
-			entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
-	static class DbGeofenceAddJPAJpaRepositoriesConfig {
-	}
-
 }
