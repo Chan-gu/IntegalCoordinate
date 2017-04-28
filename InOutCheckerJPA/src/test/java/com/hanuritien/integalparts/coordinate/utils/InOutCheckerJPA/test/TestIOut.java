@@ -1,6 +1,7 @@
 package com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -55,7 +56,7 @@ public class TestIOut {
 			logger.debug(tmp);
 		}
 		logger.debug("===================================");		
-		
+		pids.clear();
 		pids.add("p2");
 		pids.add("p3");
 		
@@ -92,8 +93,10 @@ public class TestIOut {
 	@Test
 	public void allData() {
 		logger.debug("allData =============================");
-		logger.debug("Size : " + targetRep.findAll().size()); 
-		for (Target	t : targetRep.findAll()) {
+		Collection<Target> tmp = targetRep.getAll();
+		logger.debug("Size : " + tmp.size()); 
+		for (Target	t : tmp) {
+			logger.debug("Child Size : " + t.getPlaces().size()); 			
 			logger.debug(t.toString());
 		}
 		logger.debug("===================================");

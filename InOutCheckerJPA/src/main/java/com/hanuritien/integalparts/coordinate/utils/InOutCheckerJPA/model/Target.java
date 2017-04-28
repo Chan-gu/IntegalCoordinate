@@ -1,13 +1,12 @@
 package com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.model;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -32,5 +31,5 @@ public class Target extends AbstractPersistable<Integer>{
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="target", fetch=FetchType.LAZY)
 	@Setter @Getter	
-	private Collection<Place> places;
+	private Set<Place> places;
 }

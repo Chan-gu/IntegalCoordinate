@@ -38,7 +38,6 @@ public class StateServiceImpl implements StateService {
 		if (tmp != null) {
 			// 1-1 있을 경우
 			
-			tmp = targetRep.findOne(tmp.getId());
 			// 1) 기존 위치 해쉬맵에 등록
 			HashMap<String, Object> placeMap = new HashMap<String, Object>();
 			for (Place tplace : tmp.getPlaces()) {

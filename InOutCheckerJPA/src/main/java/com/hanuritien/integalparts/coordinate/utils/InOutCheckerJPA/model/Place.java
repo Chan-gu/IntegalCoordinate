@@ -1,6 +1,5 @@
 package com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +22,7 @@ import lombok.ToString;
 public class Place extends AbstractPersistable<Integer>{
 	private static final long serialVersionUID = 6696481813365448699L;
 
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JoinColumn(name="tbl_targets_id")
 	@Setter @Getter
 	private Target target;

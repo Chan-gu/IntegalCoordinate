@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.AppConfig;
+import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.GeofenceAddJPAConfig;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.Coordinates;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.CoordinatesRepository;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.LoadedCoordinates;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.LoadedCoordinatesRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=AppConfig.class) 
+@ContextConfiguration(classes=GeofenceAddJPAConfig.class) 
 @Component
 public class DemoApplicationTests {
 	Logger logger = LoggerFactory.getLogger(DemoApplicationTests.class);

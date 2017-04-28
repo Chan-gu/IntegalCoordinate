@@ -13,7 +13,7 @@ public interface CoordinatesRepository extends JpaRepository<Coordinates, Intege
 	 * @return
 	 * 미처리 대상 확인
 	 */
-	@Query("SELECT c FROM tbl_coordinates c LEFT JOIN FETCH c.child s WHERE s.id is null")
+	@Query("SELECT distinct c FROM tbl_coordinates c LEFT JOIN FETCH c.child s WHERE s.id is null")
 	Collection<Coordinates> findNotLoaded();
 	
 	/**
@@ -21,6 +21,6 @@ public interface CoordinatesRepository extends JpaRepository<Coordinates, Intege
 	 * @return
 	 * 대상 아이디 값으로 검색
 	 */
-	@Query("SELECT c FROM tbl_coordinates c WHERE c.targetID = :vid")
+	@Query("SELECT distinct c FROM tbl_coordinates c WHERE c.targetID = :vid")
 	Collection<Coordinates> findByTargetID(@Param("vid")String id);
 }

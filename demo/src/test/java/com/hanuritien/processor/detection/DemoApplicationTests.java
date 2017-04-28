@@ -11,7 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.AppConfig;
+import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.GeofenceAddJPAConfig;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.Coordinates;
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.CoordinatesRepository;
 
@@ -30,7 +30,7 @@ public class DemoApplicationTests {
 
 	@Test
 	public void contextLoads1() {
-		ApplicationContext applicationContext  = new AnnotationConfigApplicationContext(AppConfig.class);
+		ApplicationContext applicationContext  = new AnnotationConfigApplicationContext(GeofenceAddJPAConfig.class);
 		coordinatesRepository = applicationContext.getBean(CoordinatesRepository.class);
 		
 		Coordinates tmp = new Coordinates();

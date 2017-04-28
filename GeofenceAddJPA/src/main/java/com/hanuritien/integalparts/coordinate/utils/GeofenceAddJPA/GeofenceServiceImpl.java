@@ -19,8 +19,8 @@ import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.RemoveC
 import com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.model.RemoveCoordinatesRepository;
 
 @Service("geofenceService")
-public class CoordinateServiceImpl implements GeofenceService {
-	Logger logger = LoggerFactory.getLogger(CoordinateServiceImpl.class);
+public class GeofenceServiceImpl implements GeofenceService {
+	Logger logger = LoggerFactory.getLogger(GeofenceServiceImpl.class);
 
 	@Autowired
 	private CoordinatesRepository coorRep;
