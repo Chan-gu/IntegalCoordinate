@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional(value="transactionManagerInOutChecker")
 public interface TargetRepository extends JpaRepository<Target, Integer>{
 
 	@Query("SELECT distinct t FROM tbl_targets t left join fetch t.places  WHERE t.vid = :vid")

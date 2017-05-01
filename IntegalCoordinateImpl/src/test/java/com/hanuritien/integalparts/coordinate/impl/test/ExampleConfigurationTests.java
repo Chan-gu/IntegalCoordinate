@@ -32,8 +32,8 @@ public class ExampleConfigurationTests {
 	@Resource(name="coordinateService")
 	CoordinateService service;
 	
-	@Resource(name="stateService")
-	StateService ssvc;
+/*	@Resource(name="stateService")
+	StateService ssvc;*/
 
 	String vid = "test";
 	

@@ -1,18 +1,16 @@
 package com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,18 +18,23 @@ import com.hanuritien.integalparts.coordinate.StateService;
 import com.hanuritien.integalparts.coordinate.model.InOutPlaceVO;
 import com.hanuritien.integalparts.coordinate.model.NowPlaceVO;
 import com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.InOutCheckerJPAConfig;
-import com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.model.Target;
+import com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.StateServiceImpl;
+import com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.TestConfig;
 import com.hanuritien.integalparts.coordinate.utils.InOutCheckerJPA.model.TargetRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=InOutCheckerJPAConfig.class) 
-@Component
+@ContextConfiguration(classes=TestConfig.class) 
+//@Component
 public class TestIOut {
 	Logger logger = LoggerFactory.getLogger(TestIOut.class);
 	
 	
-	@Resource(name="stateService")
+	//@Resource(name="stateService")
 	StateService ssvc;
+	
+	//@Autowired
+	TargetRepository targetRep;	
+	
 	
 	String vid = "test";
 	/**
@@ -39,6 +42,8 @@ public class TestIOut {
 	 */
 	@Test
 	public void inoutcheck() {
+		ApplicationContext applicationContext  = new AnnotationConfigApplicationContext(InOutCheckerJPAConfig.class);
+		ssvc = applicationContext.getBean(StateServiceImpl.class);
 		
 		List<String> pids = new ArrayList<String>();
 		pids.add("p1");
@@ -78,6 +83,8 @@ public class TestIOut {
 	
 	@Test
 	public void state() {
+		ApplicationContext applicationContext  = new AnnotationConfigApplicationContext(InOutCheckerJPAConfig.class);
+		ssvc = applicationContext.getBean(StateServiceImpl.class);		
 		NowPlaceVO now = ssvc.getLastPlace(vid);
 		logger.debug("state =============================");
 		logger.debug(now.getLastTime().toString());
@@ -85,22 +92,6 @@ public class TestIOut {
 			logger.debug(tmp);
 		}
 		logger.debug("===================================");
-	}
-	
-	@Autowired
-	TargetRepository targetRep;
-	
-	@Test
-	public void allData() {
-		logger.debug("allData =============================");
-		Collection<Target> tmp = targetRep.getAll();
-		logger.debug("Size : " + tmp.size()); 
-		for (Target	t : tmp) {
-			logger.debug("Child Size : " + t.getPlaces().size()); 			
-			logger.debug(t.toString());
-		}
-		logger.debug("===================================");
-		
 	}
 
 }
