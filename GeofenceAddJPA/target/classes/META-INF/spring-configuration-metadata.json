@@ -1,9 +1,0 @@
-{
-  "groups": [{
-    "name": "datasource.geofenceaddjpa",
-    "sourceMethod": "public javax.sql.DataSource GeofenceDataSource() ",
-    "sourceType": "com.hanuritien.integalparts.coordinate.utils.GeofenceAddJPA.GeofenceAddJPAConfig",
-    "type": "javax.sql.DataSource"
-  }],
-  "properties": []
-}
