@@ -6,67 +6,74 @@
 		<artifactId>spring-geofence-examples</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>Geofence-Hit-Checker</artifactId>
+	<artifactId>Geofence-Data-JPA</artifactId>
+
 	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.14</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Logging with SLF4J & LogBack -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>3.1.0.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-joda</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.hanuritien.integalcoordinate</groupId>
 			<artifactId>Geofence-Service</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
 
 		<dependency>
-			<groupId>com.github.davidmoten</groupId>
-			<artifactId>rtree</artifactId>
-			<version>0.8-RC10</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.davidmoten</groupId>
-			<artifactId>rxjava-extras</artifactId>
-			<version>0.8.0.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.davidmoten</groupId>
-			<artifactId>flatbuffers-java</artifactId>
-			<version>1.6.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.reactivex.rxjava2</groupId>
-			<artifactId>rxjava</artifactId>
-			<version>2.0.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.davidmoten</groupId>
-			<artifactId>guava-mini</artifactId>
-			<version>0.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vividsolutions</groupId>
-			<artifactId>jts-core</artifactId>
-			<version>1.14.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.esri.geometry</groupId>
-			<artifactId>esri-geometry-api</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.hanuritien.integalcoordinate</groupId>
-			<artifactId>Geofence-InOut-JPA</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.hanuritien.integalcoordinate</groupId>
-			<artifactId>multidatasource</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.hanuritien.integalcoordinate</groupId>
-			<artifactId>Geofence-MultiData-JPA</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 	
@@ -93,5 +100,5 @@
 			<name>libs-snapshots</name>
 			<url>${repo-url}/ext-snapshot-local</url>
 		</snapshotRepository>
-	</distributionManagement>	
+	</distributionManagement>
 </project>

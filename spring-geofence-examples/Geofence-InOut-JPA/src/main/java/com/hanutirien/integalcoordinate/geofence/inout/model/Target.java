@@ -29,7 +29,7 @@ public class Target extends AbstractPersistable<Integer>{
 	@Setter @Getter	
 	private DateTime lastDate;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="target", fetch=FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="target", fetch=FetchType.EAGER)
 	@Setter @Getter	
 	private Set<Place> places;
 	

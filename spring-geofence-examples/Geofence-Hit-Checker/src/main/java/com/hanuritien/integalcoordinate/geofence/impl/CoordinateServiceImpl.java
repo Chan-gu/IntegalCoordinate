@@ -29,11 +29,14 @@ import com.hanuritien.integalcoordinate.geofence.models.CoordinatesVO;
 import com.hanuritien.integalcoordinate.geofence.models.NowPlaceVO;
 import com.hanuritien.integalcoordinate.geofence.models.RLocationVO;
 import com.hanuritien.integalcoordinate.geofence.models.ResultPlaceVO;
+//import com.hanuritien.integalcoordinate.multidatasource.DataSource;
 
 import rx.functions.Func1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CoordinateServiceImpl implements CoordinateService {
 	Logger logger = LoggerFactory.getLogger(CoordinateServiceImpl.class);
 	

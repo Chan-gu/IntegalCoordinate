@@ -69,6 +69,11 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>com.hanuritien.integalcoordinate</groupId>
+			<artifactId>multidatasource</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	
 	<properties>

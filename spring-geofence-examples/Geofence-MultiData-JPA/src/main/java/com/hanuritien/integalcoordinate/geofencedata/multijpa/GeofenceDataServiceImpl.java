@@ -7,8 +7,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +24,13 @@ import com.hanuritien.integalcoordinate.geofencedata.multijpa.coordinate.RemoveC
 import com.hanuritien.integalcoordinate.multidatasource.DataSource;
 
 
+@Primary
 @Service
+@Qualifier("method")
 @Transactional
-@DataSource("coordinates")
 public class GeofenceDataServiceImpl implements GeofenceDataService {
 	Logger logger = LoggerFactory.getLogger(GeofenceDataServiceImpl.class);
-
+	
 	@Autowired
 	CoordinatesRepository coorRep;
 
@@ -38,6 +40,7 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 	@Autowired
 	RemoveCoordinatesRepository removeRep;
 
+	@DataSource("coordinates")
 	@Override
 	public Collection<CoordinatesVO> getAll() {
 		// 기존 처리가 완료된 내역을 반환한다.
@@ -54,6 +57,7 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		return ret;
 	}
 
+	@DataSource("coordinates")
 	@Override
 	public Collection<CoordinatesVO> getRemove() {
 		List<CoordinatesVO> ret = new ArrayList<CoordinatesVO>();
@@ -69,6 +73,7 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		return ret;
 	}
 
+	@DataSource("coordinates")
 	@Override
 	public Collection<CoordinatesVO> getNews() {
 		// 미처리 건에 대해서 반환한다.
@@ -84,6 +89,7 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		return ret;
 	}
 
+	@DataSource("coordinates")
 	@Override
 	public void doneLoaded(Collection<CoordinatesVO> list) {
 		for (CoordinatesVO tmp : list) {
@@ -94,7 +100,8 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		}
 		loadRep.flush();
 	}
-
+	
+	@DataSource("coordinates")
 	@Override
 	public void insertData(Collection<CoordinatesVO> list) {
 		for (CoordinatesVO tmp : list) {
@@ -108,6 +115,7 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		coorRep.flush();
 	}
 
+	@DataSource("coordinates")
 	@Override
 	public void deleteData(Collection<CoordinatesVO> list) {
 		for (CoordinatesVO tmp : list) {
@@ -119,6 +127,7 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		removeRep.flush();
 	}
 
+	@DataSource("coordinates")
 	@Override
 	public Collection<CoordinatesVO> findById(String id) {
 		List<CoordinatesVO> ret = new ArrayList<CoordinatesVO>();

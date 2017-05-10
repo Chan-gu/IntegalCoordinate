@@ -9,7 +9,8 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hanuritien.integalcoordinate.geofence.StateService;
@@ -19,23 +20,22 @@ import com.hanutirien.integalcoordinate.geofence.inout.model.Place;
 import com.hanutirien.integalcoordinate.geofence.inout.model.PlaceRepository;
 import com.hanutirien.integalcoordinate.geofence.inout.model.Target;
 import com.hanutirien.integalcoordinate.geofence.inout.model.TargetRepository;
+import com.hanuritien.integalcoordinate.multidatasource.DataSource;
 
 
-@Component
-@Transactional("inOutTransactionManager")
+@Service
+@Qualifier("method")
+@Transactional
 public class StateServiceImpl implements StateService {
 	Logger logger = LoggerFactory.getLogger(StateServiceImpl.class);
-	
-	public StateServiceImpl() {
-		
-	}
 
 	@Autowired
-	PlaceRepository placeRep;
-
+	PlaceRepository placeRep;	
+	
 	@Autowired
 	TargetRepository targetRep;
 
+	@DataSource("inout")
 	@Override
 	public NowPlaceVO getLastPlace(String vId) {
 		NowPlaceVO ret = new NowPlaceVO();
@@ -60,6 +60,7 @@ public class StateServiceImpl implements StateService {
 	 * @param lists
 	 *            위치 등록
 	 */
+	@DataSource("inout")
 	private void insertPlace(Target target, Collection<String> lists) {
 		for (String strPid : lists) {
 			Place tmp = new Place();
@@ -76,6 +77,7 @@ public class StateServiceImpl implements StateService {
 	 * @param lists
 	 *            위치 삭제
 	 */
+	@DataSource("inout")
 	private void deletePlace(Target target, Collection<String> lists) {
 		for (String strPid : lists) {
 			logger.debug("deletePlace ======> " + strPid + "  target.getId() ===> " + target.getId());
@@ -85,6 +87,7 @@ public class StateServiceImpl implements StateService {
 		placeRep.flush();
 	}
 
+	@DataSource("inout")
 	@Override
 	public InOutPlaceVO nowPlace(DateTime time, String vId, Collection<String> places, float longitude,
 			float latitude) {
@@ -101,7 +104,7 @@ public class StateServiceImpl implements StateService {
 			// 1) 기존 위치 해쉬맵에 등록
 			HashMap<String, Object> placeMap = new HashMap<String, Object>();
 			for (Place tplace : tmp.getPlaces()) {
-				placeMap.put(tplace.getPid(), null);
+				placeMap.put(tplace.getPid(), tplace );
 			}
 
 			// 2) 신규 위치를 해쉬맵에서 확인
@@ -116,7 +119,7 @@ public class StateServiceImpl implements StateService {
 			// 3) 신규 위치 해쉬맵에 등록
 			HashMap<String, Object> newMap = new HashMap<String, Object>();
 			for (String tPid : places) {
-				newMap.put(tPid, null);
+				newMap.put(tPid, tPid);
 			}
 
 			// 4) 기존 위치를 신규위치 해쉬맵에서 확인

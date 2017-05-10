@@ -1,0 +1,39 @@
+{
+  "groups": [{
+    "name": "hanuritien.geofencedata",
+    "type": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties",
+    "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+  }],
+  "properties": [
+    {
+      "name": "hanuritien.geofencedata.password",
+      "type": "java.lang.String",
+      "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+    },
+    {
+      "name": "hanuritien.geofencedata.password",
+      "type": "java.lang.String",
+      "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+    },
+    {
+      "name": "hanuritien.geofencedata.url",
+      "type": "java.lang.String",
+      "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+    },
+    {
+      "name": "hanuritien.geofencedata.url",
+      "type": "java.lang.String",
+      "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+    },
+    {
+      "name": "hanuritien.geofencedata.username",
+      "type": "java.lang.String",
+      "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+    },
+    {
+      "name": "hanuritien.geofencedata.username",
+      "type": "java.lang.String",
+      "sourceType": "com.hanuritien.integalcoordinate.geofencedata.jpa.GeofenceDataSourceProperties"
+    }
+  ]
+}
