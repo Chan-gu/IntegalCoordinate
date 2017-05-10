@@ -2,9 +2,17 @@ package com.hanutirien.integalcoordinate.geofence.inout;
 
 import javax.sql.DataSource;
 
+import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.h2.jdbcx.JdbcDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -21,10 +29,13 @@ import com.hanutirien.integalcoordinate.geofence.inout.model.Target;
 		entityManagerFactoryRef = "inOutEntityManagerFactory", 
 		transactionManagerRef = "inOutTransactionManager",
 		basePackages="com.hanutirien.integalcoordinate.geofence.inout.model")
+@EnableConfigurationProperties(DataSourceProperties.class)
 public class InOutConfig {
+	DataSourceProperties ds;
 	
 	@Bean
-	public StateService stateService() {
+	public StateService stateService(DataSourceProperties properties) {
+		this.ds = properties;
 		return new StateServiceImpl();
 	}
 	
@@ -47,13 +58,15 @@ public class InOutConfig {
 
 		return factoryBean;
 	}
-	
+
 	@Bean
 	DataSource inOutDataSource() {
 		JdbcDataSource ret = new JdbcDataSource();
-		//ret.setURL("jdbc:h2:split:24:~/hanuritien/inout;AUTO_SERVER=TRUE;CACHE_SIZE=8192");
-		ret.setURL("jdbc:h2:split:24:~/hanuritien/inout;AUTO_SERVER=TRUE");
-		ret.setUser("sa");
+		ret.setURL(ds.getUrl());
+		ret.setUser(ds.getUsername());
+		if (ds.getPassword() != null)
+			ret.setPassword(ds.getPassword());
 		return ret;
 	}
+	
 }

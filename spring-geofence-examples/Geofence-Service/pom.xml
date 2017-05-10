@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.hanutirien.integalcoordinate</groupId>
+		<groupId>com.hanuritien.integalcoordinate</groupId>
 		<artifactId>spring-geofence-examples</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -38,4 +38,29 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+	
+	<properties>
+		<repo-url>http://219.254.35.203:8081/artifactory</repo-url>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>tb.connectcar.net</id>
+			<name>tb.connectcar.net-releases</name>
+			<url>http://219.254.35.203:8081/artifactory/repo/</url>
+		</repository>
+	</repositories>	
+
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>libs-releases</name>
+			<url>${repo-url}/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>libs-snapshots</name>
+			<url>${repo-url}/ext-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>	
 </project>

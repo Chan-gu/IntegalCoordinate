@@ -1,12 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.hanutirien.integalcoordinate</groupId>
-    <artifactId>spring-geofence-examples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>Test-Geofence</artifactId>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hanuritien.integalcoordinate</groupId>
+		<artifactId>spring-geofence-examples</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>Test-Geofence</artifactId>
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -22,22 +23,22 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.hanutirien.integalcoordinate</groupId>
+			<groupId>com.hanuritien.integalcoordinate</groupId>
 			<artifactId>Geofence-Service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.hanutirien.integalcoordinate</groupId>
+			<groupId>com.hanuritien.integalcoordinate</groupId>
 			<artifactId>Geofence-Data-JPA</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.hanutirien.integalcoordinate</groupId>
+<!-- 		<dependency>
+			<groupId>com.hanuritien.integalcoordinate</groupId>
 			<artifactId>Geofence-InOut-JPA</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-  </dependencies>
-  
+		</dependency> -->
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -50,6 +51,13 @@
 					</arguments>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
 		</plugins>
-	</build>  
+	</build>
 </project>
