@@ -60,11 +60,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.hanuritien.integalcoordinate</groupId>
-			<artifactId>multidatasource</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.hanuritien.integalcoordinate</groupId>
 			<artifactId>Geofence-MultiData-JPA</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>

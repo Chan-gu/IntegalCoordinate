@@ -20,12 +20,11 @@ import com.hanutirien.integalcoordinate.geofence.inout.model.Place;
 import com.hanutirien.integalcoordinate.geofence.inout.model.PlaceRepository;
 import com.hanutirien.integalcoordinate.geofence.inout.model.Target;
 import com.hanutirien.integalcoordinate.geofence.inout.model.TargetRepository;
-import com.hanuritien.integalcoordinate.multidatasource.DataSource;
 
 
 @Service
 @Qualifier("method")
-@Transactional
+@Transactional("inoutTransactionManager")
 public class StateServiceImpl implements StateService {
 	Logger logger = LoggerFactory.getLogger(StateServiceImpl.class);
 
@@ -35,7 +34,6 @@ public class StateServiceImpl implements StateService {
 	@Autowired
 	TargetRepository targetRep;
 
-	@DataSource("inout")
 	@Override
 	public NowPlaceVO getLastPlace(String vId) {
 		NowPlaceVO ret = new NowPlaceVO();
@@ -60,7 +58,6 @@ public class StateServiceImpl implements StateService {
 	 * @param lists
 	 *            위치 등록
 	 */
-	@DataSource("inout")
 	private void insertPlace(Target target, Collection<String> lists) {
 		for (String strPid : lists) {
 			Place tmp = new Place();
@@ -77,7 +74,6 @@ public class StateServiceImpl implements StateService {
 	 * @param lists
 	 *            위치 삭제
 	 */
-	@DataSource("inout")
 	private void deletePlace(Target target, Collection<String> lists) {
 		for (String strPid : lists) {
 			logger.debug("deletePlace ======> " + strPid + "  target.getId() ===> " + target.getId());
@@ -87,7 +83,6 @@ public class StateServiceImpl implements StateService {
 		placeRep.flush();
 	}
 
-	@DataSource("inout")
 	@Override
 	public InOutPlaceVO nowPlace(DateTime time, String vId, Collection<String> places, float longitude,
 			float latitude) {

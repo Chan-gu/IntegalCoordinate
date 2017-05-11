@@ -22,11 +22,10 @@ import com.hanuritien.integalcoordinate.geofence.models.CoordinateType;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinatesVO;
 import com.hanuritien.integalcoordinate.geofence.models.InOutPlaceVO;
 //import com.hanuritien.integalcoordinate.multidatasource.DataSource;
-import com.hanuritien.integalcoordinate.multidatasource.DataSource;
 
 @RestController
 @RequestMapping("test")
-@Qualifier("method")
+//@Qualifier("method")
 public class TestController {
 	Logger logger = LoggerFactory.getLogger(TestController.class);
 	
@@ -42,7 +41,7 @@ public class TestController {
 	
 
 	
-	@DataSource("coordinates")
+//	@DataSource("coordinates")
 	@RequestMapping(value = "get1", method = RequestMethod.GET)
 	public String test() throws Exception {
 		for (CoordinatesVO tmp : geofenceService.getAll()) {
@@ -54,7 +53,7 @@ public class TestController {
 	String vid = "test";
 	
 
-	@DataSource("inout")
+//	@DataSource("inout")
 	@RequestMapping(value = "get2", method = RequestMethod.GET)
 	public String test2() throws Exception {
 		List<String> pids = new ArrayList<String>();
@@ -76,7 +75,7 @@ public class TestController {
 		return "";
 	}
 	
-	@DataSource("inout")
+//	@DataSource("inout")
 	@RequestMapping(value = "get3", method = RequestMethod.GET)
 	public String test3() throws Exception {
 		List<String> pids = new ArrayList<String>();
@@ -116,7 +115,7 @@ public class TestController {
 		return "";
 	}
 	
-	@DataSource("coordinates")
+//	@DataSource("coordinates")
 	@RequestMapping(value = "get6", method = RequestMethod.GET)
 	public String test6() throws Exception {
 		List<CoordinatesVO> test = new ArrayList<CoordinatesVO>();

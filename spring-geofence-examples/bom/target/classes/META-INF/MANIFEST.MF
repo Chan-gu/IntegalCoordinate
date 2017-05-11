@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: Geofence-Data-JPA
+Implementation-Title: bom
 Implementation-Version: 0.0.2-SNAPSHOT
 Built-By: changu
 Implementation-Vendor-Id: com.hanuritien.integalcoordinate

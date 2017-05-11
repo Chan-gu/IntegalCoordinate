@@ -26,6 +26,7 @@ import com.hanuritien.integalcoordinate.geofence.GeofenceDataService;
 import com.hanuritien.integalcoordinate.geofence.StateService;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinateType;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinatesVO;
+import com.hanuritien.integalcoordinate.geofence.models.InOutPlaceVO;
 import com.hanuritien.integalcoordinate.geofence.models.NowPlaceVO;
 import com.hanuritien.integalcoordinate.geofence.models.RLocationVO;
 import com.hanuritien.integalcoordinate.geofence.models.ResultPlaceVO;
@@ -216,7 +217,18 @@ public class CoordinateServiceImpl implements CoordinateService {
 			places.add(t.getId());
 		}
 		logger.debug("listenLocation : " +vID + " find ->" + tmp.size());
-		stateService.nowPlace(timeSighting, vID, places, longitude, latitude);
+		InOutPlaceVO iout = stateService.nowPlace(timeSighting, vID, places, longitude, latitude);
+		logger.debug("in    =============================");
+		for (String t : iout.getPlaceIns()) {
+			logger.debug(t);
+		}
+		logger.debug("===================================");
+		
+		logger.debug("out    =============================");
+		for (String t : iout.getPlaceOuts()) {
+			logger.debug(t);
+		}
+		logger.debug("===================================");				
 	}
 
 	@Override
