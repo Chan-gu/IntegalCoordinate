@@ -1,5 +1,7 @@
 package com.hanuritien.integalcoordinate.geofence;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 import com.hanuritien.integalcoordinate.geofence.models.RLocationVO;
@@ -23,7 +25,7 @@ public interface CoordinateService {
 	 * @param longitude 경도 x
 	 * @param latitude 위도 y
 	 */
-	void listenLocation(DateTime timeSighting, String vID, float longitude, float latitude);
+	void listenLocation(DateTime timeSighting, String vID, BigDecimal longitude, BigDecimal latitude);
 	
 	/**
 	 * 대상 아이디의 최종 위치정보
@@ -36,4 +38,9 @@ public interface CoordinateService {
 	 * 전체 데이터 다시 로드
 	 */
 	void reloadData();
+	
+	/**
+	 * 변경 데이터 다시 로드
+	 */
+	void loadChangeData();
 }

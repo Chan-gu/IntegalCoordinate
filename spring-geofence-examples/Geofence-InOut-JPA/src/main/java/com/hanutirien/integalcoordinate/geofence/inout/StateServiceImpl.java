@@ -1,5 +1,6 @@
 package com.hanutirien.integalcoordinate.geofence.inout;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -84,8 +85,8 @@ public class StateServiceImpl implements StateService {
 	}
 
 	@Override
-	public InOutPlaceVO nowPlace(DateTime time, String vId, Collection<String> places, float longitude,
-			float latitude) {
+	public InOutPlaceVO nowPlace(DateTime time, String vId, Collection<String> places, BigDecimal longitude,
+			BigDecimal latitude) {
 		// TODO Auto-generated method stub
 		InOutPlaceVO ret = new InOutPlaceVO();
 		List<String> ins = new ArrayList<String>();

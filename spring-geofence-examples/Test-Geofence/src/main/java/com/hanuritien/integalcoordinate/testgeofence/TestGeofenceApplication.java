@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.esri.core.geometry.GeometryEngine;
+import com.esri.core.geometry.Point;
 
 @SpringBootApplication
 @ComponentScan (
@@ -16,6 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
 				"com.hanuritien.integalcoordinate.geofence.impl"
 				}
 		)
+@EnableScheduling
 public class TestGeofenceApplication {
 
 	@Bean
@@ -25,7 +30,10 @@ public class TestGeofenceApplication {
 		return registration;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
+/*		System.out.println(GeometryEngine.geodesicDistanceOnWGS84(new Point(127.0f, 45.0f), new Point(127.0f, 45.0001f)));		
+		System.out.println(GeometryEngine.geodesicDistanceOnWGS84(new Point(127.0f, 45.0f), new Point(127.0f, 45.00001f)));		
+*/		
 		SpringApplication.run(TestGeofenceApplication.class, args);
 	}
 }

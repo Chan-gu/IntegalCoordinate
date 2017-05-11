@@ -1,5 +1,6 @@
 package com.hanuritien.integalcoordinate.geofence;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import org.joda.time.DateTime;
 import com.hanuritien.integalcoordinate.geofence.models.InOutPlaceVO;
@@ -15,7 +16,7 @@ public interface StateService {
 	 * @param latitude 위도
 	 * @return 출도착 응답
 	 */
-	InOutPlaceVO nowPlace(DateTime time, String vId, Collection<String> places, float longitude, float latitude);
+	InOutPlaceVO nowPlace(DateTime time, String vId, Collection<String> places, BigDecimal longitude, BigDecimal latitude);
 	
 	/**
 	 * 최종 검출 내역  

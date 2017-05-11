@@ -4,6 +4,8 @@
 package com.hanuritien.integalcoordinate.geofence.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,13 +35,13 @@ public class RLocationVO implements Serializable {
 	 * 경도 x;
 	 */
 	@Getter @Setter
-	private float longitude;
+	private BigDecimal longitude;
 	
 	/**
 	 * 위도 y;
 	 */
 	@Getter @Setter
-	private float latitude;
+	private BigDecimal latitude;
 	
 	/**
 	 * 데이터 발생시간

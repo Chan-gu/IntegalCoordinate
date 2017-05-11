@@ -1,5 +1,6 @@
 package com.hanuritien.integalcoordinate.testgeofence;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,8 @@ public class TestController {
 		pids.add("p1");
 		pids.add("p2");
 		
-		InOutPlaceVO iout = stateService.nowPlace(DateTime.now(), vid, pids, 123.1f, 37.0f);
+		
+		InOutPlaceVO iout = stateService.nowPlace(DateTime.now(), vid, pids, new BigDecimal("123.1"), new BigDecimal("37.0"));
 		logger.debug("in    =============================");
 		for (String tmp : iout.getPlaceIns()) {
 			logger.debug(tmp);
@@ -82,7 +84,7 @@ public class TestController {
 		pids.add("p2");
 		pids.add("p3");
 		
-		InOutPlaceVO iout = stateService.nowPlace(DateTime.now(), vid, pids, 123.1f, 37.0f);
+		InOutPlaceVO iout = stateService.nowPlace(DateTime.now(), vid, pids, new BigDecimal("123.1"), new BigDecimal("37.0"));
 		logger.debug("in    =============================");
 		for (String tmp : iout.getPlaceIns()) {
 			logger.debug(tmp);
@@ -99,10 +101,10 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = "get4", method = RequestMethod.GET)
-	public String test4(float x, float y) throws Exception {
+	public String test4(String x, String y) throws Exception {
 		logger.debug("x    == " + x);
 		logger.debug("y    == " + y);
-		coordinateService.listenLocation(DateTime.now(), vid, x, y);
+		coordinateService.listenLocation(DateTime.now(), vid, new BigDecimal(x), new BigDecimal(y));
 
 		return "";
 	}
@@ -120,8 +122,8 @@ public class TestController {
 	public String test6() throws Exception {
 		List<CoordinatesVO> test = new ArrayList<CoordinatesVO>();
 		CoordinatesVO tmp = new CoordinatesVO();
-		tmp.setId("테스트위치");
-		tmp.setRadius(0.01f);
+		tmp.setId("테스트위치");		
+		tmp.setRadius(new BigDecimal("100"));
 		tmp.setSaveKey(1);
 		tmp.setType(CoordinateType.Circle);
 		MapGeometry geometry = new MapGeometry(new Point(123.1f, 37.0f), SpatialReference.create(4326));

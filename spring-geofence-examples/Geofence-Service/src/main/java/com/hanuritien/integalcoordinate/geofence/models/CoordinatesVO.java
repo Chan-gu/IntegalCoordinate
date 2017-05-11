@@ -1,6 +1,7 @@
 package com.hanuritien.integalcoordinate.geofence.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.esri.core.geometry.MapGeometry;
 
@@ -43,11 +44,11 @@ public class CoordinatesVO implements Serializable {
 	@Getter @Setter
 	private MapGeometry geometry;
 	/**
-	 * 반경
+	 * 반경 단위 (m)
 	 * 원 : 반경
 	 * 선 : 두께
 	 * 도형 : 무시
 	 */
 	@Getter @Setter
-	private Float radius;
+	private BigDecimal radius;
 }

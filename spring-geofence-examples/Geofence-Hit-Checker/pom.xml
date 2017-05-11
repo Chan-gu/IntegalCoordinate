@@ -9,6 +9,11 @@
 	<artifactId>Geofence-Hit-Checker</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
@@ -63,8 +68,16 @@
 			<artifactId>Geofence-MultiData-JPA</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
 	</dependencies>
-	
+
 	<properties>
 		<repo-url>http://219.254.35.203:8081/artifactory</repo-url>
 	</properties>
@@ -75,7 +88,7 @@
 			<name>tb.connectcar.net-releases</name>
 			<url>http://219.254.35.203:8081/artifactory/repo/</url>
 		</repository>
-	</repositories>	
+	</repositories>
 
 	<distributionManagement>
 		<repository>
@@ -88,5 +101,5 @@
 			<name>libs-snapshots</name>
 			<url>${repo-url}/ext-snapshot-local</url>
 		</snapshotRepository>
-	</distributionManagement>	
+	</distributionManagement>
 </project>

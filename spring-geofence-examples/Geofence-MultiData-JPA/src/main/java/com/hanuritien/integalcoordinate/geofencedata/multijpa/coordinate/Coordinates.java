@@ -1,6 +1,9 @@
 package com.hanuritien.integalcoordinate.geofencedata.multijpa.coordinate;
 
+import java.math.BigDecimal;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
@@ -39,8 +42,10 @@ public class Coordinates extends AbstractPersistable<Integer> {
 	@Lob
 	@Setter @Getter
 	private String geometry;
+	
+	@Column(precision = 15, scale = 4)
 	@Setter @Getter
-	private Float radius;
+	private BigDecimal radius;
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@Setter @Getter

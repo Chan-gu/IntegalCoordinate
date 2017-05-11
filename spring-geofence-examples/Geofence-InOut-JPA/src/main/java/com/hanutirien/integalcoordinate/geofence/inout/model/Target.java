@@ -1,5 +1,6 @@
 package com.hanutirien.integalcoordinate.geofence.inout.model;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -36,12 +37,14 @@ public class Target extends AbstractPersistable<Integer>{
 	/**
 	 * 경도 x;
 	 */
+	@Column(precision = 10, scale = 7)
 	@Getter @Setter
-	private float longitude;
+	private BigDecimal longitude;
 	
 	/**
 	 * 위도 y;
 	 */
+	@Column(precision = 10, scale = 7)
 	@Getter @Setter
-	private float latitude;
+	private BigDecimal latitude;
 }
