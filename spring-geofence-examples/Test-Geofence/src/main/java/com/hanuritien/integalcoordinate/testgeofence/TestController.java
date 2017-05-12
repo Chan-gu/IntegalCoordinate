@@ -3,6 +3,7 @@ package com.hanuritien.integalcoordinate.testgeofence;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -117,16 +118,17 @@ public class TestController {
 		return "";
 	}
 	
+	int id =0;
 //	@DataSource("coordinates")
 	@RequestMapping(value = "get6", method = RequestMethod.GET)
 	public String test6() throws Exception {
 		List<CoordinatesVO> test = new ArrayList<CoordinatesVO>();
 		CoordinatesVO tmp = new CoordinatesVO();
-		tmp.setId("테스트위치");		
+		tmp.setId("테스트위치" + id++);		
 		tmp.setRadius(new BigDecimal("100"));
 		tmp.setSaveKey(1);
 		tmp.setType(CoordinateType.Circle);
-		MapGeometry geometry = new MapGeometry(new Point(123.1f, 37.0f), SpatialReference.create(4326));
+		MapGeometry geometry = new MapGeometry(new Point(123.1f, 37.0f), sr);
 		tmp.setGeometry(geometry);
 		test.add(tmp);
 		
@@ -134,4 +136,43 @@ public class TestController {
 
 		return "";
 	}
+	
+	@RequestMapping(value = "get7", method = RequestMethod.GET)
+	public String test7() throws Exception {
+		List<CoordinatesVO> test = new ArrayList<CoordinatesVO>();
+		
+		for(int i=0; i <100; i++) {
+			CoordinatesVO tmp = new CoordinatesVO();
+			tmp.setId("테스트위치" + id++);		
+			tmp.setRadius(new BigDecimal("100"));
+			tmp.setType(CoordinateType.Circle);
+			tmp.setGeometry(tmpmake());
+			test.add(tmp);
+		}
+		
+		geofenceService.insertData(test);
+
+		return "";
+	}	
+	
+	SpatialReference sr = SpatialReference.create(4326);
+	
+	private MapGeometry tmpmake() {
+		Random oRandom = new Random();
+		MapGeometry ret = new MapGeometry(new Point(oRandom.nextInt(100) + 1, oRandom.nextInt(40) + 1), sr);
+		return ret;
+	}
+	
+	
+	@RequestMapping(value = "get8", method = RequestMethod.GET)
+	public String test8() throws Exception {
+		List<CoordinatesVO> test = new ArrayList<CoordinatesVO>();
+		CoordinatesVO tmp = new CoordinatesVO();
+		tmp.setSaveKey(2);
+		test.add(tmp);
+		
+		geofenceService.deleteData(test);
+
+		return "";
+	}		
 }

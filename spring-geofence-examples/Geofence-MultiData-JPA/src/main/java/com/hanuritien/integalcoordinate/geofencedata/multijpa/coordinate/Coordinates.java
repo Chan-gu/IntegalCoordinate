@@ -11,17 +11,14 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.esri.core.geometry.Geometry;
 import com.esri.core.geometry.MapGeometry;
 import com.esri.core.geometry.OperatorExportToJson;
 import com.esri.core.geometry.OperatorImportFromJson;
-import com.esri.core.geometry.Point;
-import com.esri.core.geometry.Polygon;
-import com.esri.core.geometry.Polyline;
 import com.esri.core.geometry.SpatialReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinateType;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinatesVO;
 
@@ -49,7 +46,7 @@ public class Coordinates extends AbstractPersistable<Integer> {
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@Setter @Getter
-	private DateTime createDate = DateTime.now();
+	private DateTime createDate = DateTime.now(DateTimeZone.forID("Asia/Seoul"));
 	
 	@OneToOne(cascade = CascadeType.ALL,  optional = true)
 	@PrimaryKeyJoinColumn

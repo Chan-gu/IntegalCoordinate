@@ -26,7 +26,8 @@ import com.google.common.base.Preconditions;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.hanuritien.integalcoordinate.geofencedata.multijpa.coordinate",
+@EnableJpaRepositories(
+		basePackages = "com.hanuritien.integalcoordinate.geofencedata.multijpa",
         entityManagerFactoryRef = "coordinateEntityManagerFactory",
         transactionManagerRef = "coordinateTransactionManager")
 public class CoordinatesConfig {
@@ -63,7 +64,7 @@ public class CoordinatesConfig {
         properties.put("hibernate.show_sql", env.getProperty("datasource.coordinate.show_sql"));    	
         return builder
                 .dataSource(coordinateDataSource())
-                .packages("com.hanuritien.integalcoordinate.geofencedata.multijpa.coordinate")
+                .packages("com.hanuritien.integalcoordinate.geofencedata.multijpa")
                 .persistenceUnit(COORDINATE)
                 .properties(properties)
                 .build();

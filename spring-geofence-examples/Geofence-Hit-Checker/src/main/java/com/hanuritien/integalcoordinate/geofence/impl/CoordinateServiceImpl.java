@@ -58,6 +58,7 @@ public class CoordinateServiceImpl implements CoordinateService {
 
 	double add = 200;
 	final BigDecimal meterper = new BigDecimal("0.00001");
+	long seq = 0;
 
 	@PostConstruct
 	void initService() {
@@ -95,7 +96,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 			}
 			dones.add(tmp);
 		}
-
+		tmpTree.visualize(4000,4000).save(String.format("load_%010d.png", seq++));
+		
 		return tmpTree;
 	}
 	
@@ -125,7 +127,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 			}
 			dones.add(tmp);
 		}
-
+		
+		tmpTree.visualize(4000,4000).save(String.format("load_%010d.png", seq++));
 		return tmpTree;
 	}	
 
@@ -139,7 +142,7 @@ public class CoordinateServiceImpl implements CoordinateService {
 		double x, y, radian;
 		MultiPath tmpPath;
 		Point2D t;
-
+		double rad;
 		try {
 			switch (arg.getType()) {
 			case Circle:
@@ -147,7 +150,9 @@ public class CoordinateServiceImpl implements CoordinateService {
 				x = tmpPoint.getX() + add;
 				y = tmpPoint.getY() + add;
 				radian = arg.getRadius().multiply(meterper).doubleValue();
-				ret.add(Geometries.circle(x, y, radian));
+//				ret.add(Geometries.circle(x, y, radian));
+				rad = radian / 2;
+				ret.add(Geometries.rectangle(x - rad, y - rad, x + rad, y + rad));
 				break;
 			case Line:
 				Polyline tmpPoly = (Polyline) arg.getGeometry().getGeometry();
@@ -160,7 +165,7 @@ public class CoordinateServiceImpl implements CoordinateService {
 				right = x;
 				bottom = y;
 				radian = arg.getRadius().multiply(meterper).doubleValue();
-				double rad = radian / 2;
+				rad = radian / 2;
 
 				for (int i = 1; i < tmpPath.getPathCount(); i++) {
 					t = tmpPath.getXY(i);
