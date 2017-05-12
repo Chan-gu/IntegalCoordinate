@@ -25,7 +25,9 @@ import com.github.davidmoten.rtree.geometry.Geometries;
 import com.github.davidmoten.rtree.geometry.Geometry;
 import com.hanuritien.integalcoordinate.geofence.CoordinateService;
 import com.hanuritien.integalcoordinate.geofence.GeofenceDataService;
+import com.hanuritien.integalcoordinate.geofence.InOutListener;
 import com.hanuritien.integalcoordinate.geofence.StateService;
+import com.hanuritien.integalcoordinate.geofence.models.CoordinateInOut;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinateType;
 import com.hanuritien.integalcoordinate.geofence.models.CoordinatesVO;
 import com.hanuritien.integalcoordinate.geofence.models.InOutPlaceVO;
@@ -37,7 +39,6 @@ import com.hanuritien.integalcoordinate.geofence.models.ResultPlaceVO;
 import rx.functions.Func1;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,6 +52,9 @@ public class CoordinateServiceImpl implements CoordinateService {
 
 	@Autowired
 	StateService stateService;
+	
+	@Autowired
+	InOutListener inOutListener;
 
 	double add = 200;
 	final BigDecimal meterper = new BigDecimal("0.00001");
@@ -284,6 +288,9 @@ public class CoordinateServiceImpl implements CoordinateService {
 			logger.debug(t);
 		}
 		logger.debug("===================================");
+		
+		inOutListener.actionInOut(CoordinateInOut.In, iout.getPlaceIns(), vID, timeSighting);
+		inOutListener.actionInOut(CoordinateInOut.Out, iout.getPlaceOuts(), vID, timeSighting);
 	}
 
 	@Override

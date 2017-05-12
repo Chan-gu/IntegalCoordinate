@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +23,8 @@ import com.hanutirien.integalcoordinate.geofence.inout.model.PlaceRepository;
 import com.hanutirien.integalcoordinate.geofence.inout.model.Target;
 import com.hanutirien.integalcoordinate.geofence.inout.model.TargetRepository;
 
-
+@Primary
 @Service
-@Qualifier("method")
 @Transactional("inoutTransactionManager")
 public class StateServiceImpl implements StateService {
 	Logger logger = LoggerFactory.getLogger(StateServiceImpl.class);

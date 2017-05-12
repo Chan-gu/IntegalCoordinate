@@ -15,8 +15,7 @@ spring:
 
   jpa:
     generate-ddl: true
-    show-sql: true
-    
+    show-sql: true    
 
 logging:
   level:
@@ -35,10 +34,10 @@ datasource:
         show_sql: true
         hbm2ddl: none
     coordinate:
-        url: jdbc:h2:~/hanuritien/coordinate;AUTO_SERVER=TRUE;CACHE_SIZE=8192;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        user: sa
-        pass:
-        driverClassName: org.h2.Driver
-        database-platform: org.hibernate.dialect.H2Dialect
+        url: jdbc:mysql://219.254.35.135:3306/BIO_LMS?user=bio_lms
+        user: bio_lms
+        pass: dpfdpadptmtlstp!@#
+        driverClassName: com.mysql.jdbc.Driver
+        database-platform: org.hibernate.dialect.MySQLDialect
         show_sql: true
-        hbm2ddl: update 
+        hbm2ddl: none 

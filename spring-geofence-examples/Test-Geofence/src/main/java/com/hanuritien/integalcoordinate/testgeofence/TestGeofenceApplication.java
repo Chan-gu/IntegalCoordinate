@@ -6,21 +6,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import com.esri.core.geometry.GeometryEngine;
-import com.esri.core.geometry.Point;
 
 @SpringBootApplication
 @ComponentScan (
 		basePackages={
 				"com.hanuritien.integalcoordinate.testgeofence",
+				"com.hanuritien.integalcoordinate.geofence.dummy",
 				"com.hanuritien.integalcoordinate.geofencedata.multijpa",
 				"com.hanutirien.integalcoordinate.geofence.inout",
 				"com.hanuritien.integalcoordinate.geofence.impl"
 				}
 		)
 @EnableScheduling
+@EnableAspectJAutoProxy
 public class TestGeofenceApplication {
 
 	@Bean
