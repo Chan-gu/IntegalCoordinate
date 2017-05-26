@@ -1,4 +1,4 @@
-package com.hanutirien.integalcoordinate.geofence.inout.model;
+package com.hanuritien.integalcoordinate.geofence.inout.model;
 
 import java.util.Collection;
 import java.util.List;

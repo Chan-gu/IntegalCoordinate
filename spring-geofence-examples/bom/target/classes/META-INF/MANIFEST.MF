@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: bom
-Implementation-Version: 0.0.2-SNAPSHOT
+Implementation-Version: 0.0.4-SNAPSHOT
 Built-By: changu
 Implementation-Vendor-Id: com.hanuritien.integalcoordinate
 Build-Jdk: 1.8.0_131

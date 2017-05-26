@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.hanuritien.integalcoordinate</groupId>
 		<artifactId>spring-geofence-examples</artifactId>
-		<version>0.0.3-SNAPSHOT</version>
+		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 	<artifactId>Geofence-MultiData-JPA</artifactId>
 
@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>com.hanuritien.integalcoordinate</groupId>
 			<artifactId>Geofence-Service</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>${this.pakage.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

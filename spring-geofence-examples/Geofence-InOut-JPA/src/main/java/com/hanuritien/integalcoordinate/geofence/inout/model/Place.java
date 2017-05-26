@@ -1,4 +1,4 @@
-package com.hanutirien.integalcoordinate.geofence.inout.model;
+package com.hanuritien.integalcoordinate.geofence.inout.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

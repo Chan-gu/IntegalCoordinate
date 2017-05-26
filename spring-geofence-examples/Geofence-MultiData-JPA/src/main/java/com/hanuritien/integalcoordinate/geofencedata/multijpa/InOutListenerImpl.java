@@ -19,7 +19,7 @@ import com.hanuritien.integalcoordinate.geofencedata.multijpa.inoutlistener.InOu
 
 @Primary
 @Service
-@Transactional("coordinateTransactionManager")
+@Transactional
 public class InOutListenerImpl implements InOutListener {
 	Logger logger = LoggerFactory.getLogger(InOutListenerImpl.class);
 

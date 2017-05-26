@@ -1,4 +1,4 @@
-package com.hanutirien.integalcoordinate.geofence.inout;
+package com.hanuritien.integalcoordinate.geofence.inout;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,22 +10,22 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hanuritien.integalcoordinate.geofence.StateService;
+import com.hanuritien.integalcoordinate.geofence.inout.model.Place;
+import com.hanuritien.integalcoordinate.geofence.inout.model.PlaceRepository;
+import com.hanuritien.integalcoordinate.geofence.inout.model.Target;
+import com.hanuritien.integalcoordinate.geofence.inout.model.TargetRepository;
 import com.hanuritien.integalcoordinate.geofence.models.InOutPlaceVO;
 import com.hanuritien.integalcoordinate.geofence.models.NowPlaceVO;
-import com.hanutirien.integalcoordinate.geofence.inout.model.Place;
-import com.hanutirien.integalcoordinate.geofence.inout.model.PlaceRepository;
-import com.hanutirien.integalcoordinate.geofence.inout.model.Target;
-import com.hanutirien.integalcoordinate.geofence.inout.model.TargetRepository;
 
 @Primary
 @Service
-@Transactional("inoutTransactionManager")
+//@Transactional("inoutTransactionManager")
+@Transactional
 public class StateServiceImpl implements StateService {
 	Logger logger = LoggerFactory.getLogger(StateServiceImpl.class);
 

@@ -23,7 +23,8 @@ import com.hanuritien.integalcoordinate.geofencedata.multijpa.coordinate.RemoveC
 
 @Primary
 @Service
-@Transactional("coordinateTransactionManager")
+//@Transactional("coordinateTransactionManager")
+@Transactional
 public class GeofenceDataServiceImpl implements GeofenceDataService {
 	Logger logger = LoggerFactory.getLogger(GeofenceDataServiceImpl.class);
 	

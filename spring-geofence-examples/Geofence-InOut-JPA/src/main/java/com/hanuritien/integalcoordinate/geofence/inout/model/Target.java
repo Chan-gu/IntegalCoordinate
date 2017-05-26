@@ -1,4 +1,4 @@
-package com.hanutirien.integalcoordinate.geofence.inout.model;
+package com.hanuritien.integalcoordinate.geofence.inout.model;
 
 import java.math.BigDecimal;
 import java.util.Set;

@@ -40,10 +40,7 @@ public class TestController {
 	
 	@Autowired
 	CoordinateService coordinateService;
-	
 
-	
-//	@DataSource("coordinates")
 	@RequestMapping(value = "get1", method = RequestMethod.GET)
 	public String test() throws Exception {
 		for (CoordinatesVO tmp : geofenceService.getAll()) {
@@ -53,9 +50,7 @@ public class TestController {
 	}
 	
 	String vid = "test";
-	
 
-//	@DataSource("inout")
 	@RequestMapping(value = "get2", method = RequestMethod.GET)
 	public String test2() throws Exception {
 		List<String> pids = new ArrayList<String>();
@@ -78,7 +73,6 @@ public class TestController {
 		return "";
 	}
 	
-//	@DataSource("inout")
 	@RequestMapping(value = "get3", method = RequestMethod.GET)
 	public String test3() throws Exception {
 		List<String> pids = new ArrayList<String>();
@@ -110,7 +104,6 @@ public class TestController {
 		return "";
 	}
 	
-//	@DataSource("coordinates")
 	@RequestMapping(value = "get5", method = RequestMethod.GET)
 	public String test5() throws Exception {
 		coordinateService.reloadData();
@@ -119,7 +112,6 @@ public class TestController {
 	}
 	
 	int id =0;
-//	@DataSource("coordinates")
 	@RequestMapping(value = "get6", method = RequestMethod.GET)
 	public String test6() throws Exception {
 		List<CoordinatesVO> test = new ArrayList<CoordinatesVO>();
