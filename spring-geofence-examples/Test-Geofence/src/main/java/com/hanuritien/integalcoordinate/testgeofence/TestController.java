@@ -96,10 +96,10 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = "get4", method = RequestMethod.GET)
-	public String test4(String x, String y) throws Exception {
+	public String test4(String x, String y, String n) throws Exception {
 		logger.debug("x    == " + x);
 		logger.debug("y    == " + y);
-		coordinateService.listenLocation(DateTime.now(), vid, new BigDecimal(x), new BigDecimal(y));
+		coordinateService.listenLocation(DateTime.now(), n, new BigDecimal(x), new BigDecimal(y));
 
 		return "";
 	}

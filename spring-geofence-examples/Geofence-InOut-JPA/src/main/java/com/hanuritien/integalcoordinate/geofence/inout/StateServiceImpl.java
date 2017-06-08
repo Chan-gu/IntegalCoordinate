@@ -92,6 +92,8 @@ public class StateServiceImpl implements StateService {
 		List<String> ins = new ArrayList<String>();
 		List<String> outs = new ArrayList<String>();
 
+		logger.debug("time ======> " + time + "  vId ===> " + vId);
+		
 		// 1 vid 체크
 		Target tmp = targetRep.findByVIDSingle(vId);
 		if (tmp != null) {
@@ -99,15 +101,18 @@ public class StateServiceImpl implements StateService {
 
 			// 1) 기존 위치 해쉬맵에 등록
 			HashMap<String, Object> placeMap = new HashMap<String, Object>();
-			for (Place tplace : tmp.getPlaces()) {
-				placeMap.put(tplace.getPid(), tplace );
+			if (tmp.getPlaces() != null) {
+				for (Place tplace : tmp.getPlaces()) {
+					placeMap.put(tplace.getPid(), tplace );
+				}
 			}
 
 			// 2) 신규 위치를 해쉬맵에서 확인
 			for (String tPid : places) {
 				// 2-1) 해쉬맵에 없는 경우 도착 착지리스트에 등록
 				if (!placeMap.containsKey(tPid)) {
-					ins.add(tPid);
+					if (!ins.contains(tPid))
+						ins.add(tPid);
 				}
 			}
 			placeMap.clear();
@@ -119,9 +124,11 @@ public class StateServiceImpl implements StateService {
 			}
 
 			// 4) 기존 위치를 신규위치 해쉬맵에서 확인
-			for (Place tplace : tmp.getPlaces()) {
-				if (!newMap.containsKey(tplace.getPid())) {
-					outs.add(tplace.getPid());
+			if (tmp.getPlaces() != null) {
+				for (Place tplace : tmp.getPlaces()) {
+					if (!newMap.containsKey(tplace.getPid())) {
+						outs.add(tplace.getPid());
+					}
 				}
 			}
 			// 5) 최종시간 수정
@@ -147,7 +154,8 @@ public class StateServiceImpl implements StateService {
 
 			// 2) 도착 리스트에 신규 위치들 등록
 			for (String tPid : places) {
-				ins.add(tPid);
+				if (!ins.contains(tPid))
+					ins.add(tPid);
 			}
 			targetRep.save(tmp);
 			targetRep.flush();

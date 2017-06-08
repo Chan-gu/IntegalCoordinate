@@ -96,7 +96,7 @@ public class CoordinateServiceImpl implements CoordinateService {
 			}
 			dones.add(tmp);
 		}
-		tmpTree.visualize(4000,4000).save(String.format("load_%010d.png", seq++));
+		//tmpTree.visualize(4000,4000).save(String.format("load_%010d.png", seq++));
 		
 		return tmpTree;
 	}
@@ -128,7 +128,7 @@ public class CoordinateServiceImpl implements CoordinateService {
 			dones.add(tmp);
 		}
 		
-		tmpTree.visualize(4000,4000).save(String.format("load_%010d.png", seq++));
+		//tmpTree.visualize(4000,4000).save(String.format("load_%010d.png", seq++));
 		return tmpTree;
 	}	
 

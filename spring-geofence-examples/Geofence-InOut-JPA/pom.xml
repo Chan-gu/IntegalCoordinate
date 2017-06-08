@@ -75,7 +75,7 @@
 			<version>21.0</version>
 		</dependency>
 	</dependencies>
-	
+
 	<properties>
 		<repo-url>http://219.254.35.203:8081/artifactory</repo-url>
 	</properties>
@@ -86,7 +86,7 @@
 			<name>tb.connectcar.net-releases</name>
 			<url>http://219.254.35.203:8081/artifactory/repo/</url>
 		</repository>
-	</repositories>	
+	</repositories>
 
 	<distributionManagement>
 		<repository>
@@ -99,5 +99,43 @@
 			<name>libs-snapshots</name>
 			<url>${repo-url}/ext-snapshot-local</url>
 		</snapshotRepository>
-	</distributionManagement>	
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
