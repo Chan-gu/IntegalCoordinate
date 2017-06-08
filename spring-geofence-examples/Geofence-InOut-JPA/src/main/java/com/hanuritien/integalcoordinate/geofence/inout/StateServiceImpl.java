@@ -127,7 +127,8 @@ public class StateServiceImpl implements StateService {
 			if (tmp.getPlaces() != null) {
 				for (Place tplace : tmp.getPlaces()) {
 					if (!newMap.containsKey(tplace.getPid())) {
-						outs.add(tplace.getPid());
+						if(!outs.contains(tplace.getPid()))
+							outs.add(tplace.getPid());
 					}
 				}
 			}
