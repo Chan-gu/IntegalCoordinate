@@ -59,9 +59,10 @@ public class GeofenceDataServiceImpl implements GeofenceDataService {
 		for (RemoveCoordinates tmp : removeRep.findAll()) {
 			Coordinates t = tmp.getCoordinates();
 			try {
-				ret.add(t.toCoordinatesVO());
+				if (t != null)
+					ret.add(t.toCoordinatesVO());
 			} catch (Exception e) {
-				logger.error("CoordinateServiceImpl.getNews()", e);
+				logger.error("CoordinateServiceImpl.getRemove()", e);
 			}
 		}
 

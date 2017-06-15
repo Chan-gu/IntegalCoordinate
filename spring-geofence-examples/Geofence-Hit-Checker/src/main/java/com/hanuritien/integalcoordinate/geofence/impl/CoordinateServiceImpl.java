@@ -73,7 +73,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 		for (CoordinatesVO tmp : all) {
 			List<Geometry> tlist = getTargetGeometry(tmp);
 			for (Geometry tmpgoe : tlist) {
-				tmpTree = tmpTree.add(tmp, tmpgoe);
+				if (tmpgoe != null) 
+					tmpTree = tmpTree.add(tmp, tmpgoe);
 			}
 		}
 
@@ -82,7 +83,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 		for (CoordinatesVO tmp : news) {
 			List<Geometry> tlist = getTargetGeometry(tmp);
 			for (Geometry tmpgoe : tlist) {
-				tmpTree = tmpTree.add(tmp, tmpgoe);
+				if (tmpgoe != null) 
+					tmpTree = tmpTree.add(tmp, tmpgoe);
 			}
 			dones.add(tmp);
 		}
@@ -92,7 +94,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 		for (CoordinatesVO tmp : remove) {
 			List<Geometry> tlist = getTargetGeometry(tmp);
 			for (Geometry tmpgoe : tlist) {
-				tmpTree = tmpTree.delete(tmp, tmpgoe);
+				if (tmpgoe != null) 
+					tmpTree = tmpTree.delete(tmp, tmpgoe);
 			}
 			dones.add(tmp);
 		}
@@ -113,7 +116,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 		for (CoordinatesVO tmp : news) {
 			List<Geometry> tlist = getTargetGeometry(tmp);
 			for (Geometry tmpgoe : tlist) {
-				tmpTree = tmpTree.add(tmp, tmpgoe);
+				if (tmpgoe != null) 
+					tmpTree = tmpTree.add(tmp, tmpgoe);
 			}
 			dones.add(tmp);
 		}
@@ -123,7 +127,8 @@ public class CoordinateServiceImpl implements CoordinateService {
 		for (CoordinatesVO tmp : remove) {
 			List<Geometry> tlist = getTargetGeometry(tmp);
 			for (Geometry tmpgoe : tlist) {
-				tmpTree = tmpTree.delete(tmp, tmpgoe);
+				if (tmpgoe != null) 
+					tmpTree = tmpTree.delete(tmp, tmpgoe);
 			}
 			dones.add(tmp);
 		}
