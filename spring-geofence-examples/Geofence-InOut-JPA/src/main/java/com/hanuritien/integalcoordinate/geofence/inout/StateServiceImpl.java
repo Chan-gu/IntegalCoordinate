@@ -71,7 +71,11 @@ public class StateServiceImpl implements StateService {
 			}
 		}
 
-		placeRep.flush();
+		try {
+			placeRep.flush();
+		} catch(Exception e) {
+			
+		}
 	}
 
 	/**
@@ -88,8 +92,12 @@ public class StateServiceImpl implements StateService {
 				logger.info("삭제 실패 : " + e.getMessage());
 			}
 		}
-
-		placeRep.flush();
+		
+		try {
+			placeRep.flush();
+		} catch(Exception e) {
+			
+		}
 	}
 
 	@Override
