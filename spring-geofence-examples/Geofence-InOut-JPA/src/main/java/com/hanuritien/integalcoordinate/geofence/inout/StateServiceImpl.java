@@ -1,5 +1,7 @@
 package com.hanuritien.integalcoordinate.geofence.inout;
 
+import static org.mockito.Matchers.booleanThat;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -60,22 +62,21 @@ public class StateServiceImpl implements StateService {
 	 *            위치 등록
 	 */
 	private void insertPlace(Target target, Collection<String> lists) {
+		boolean chk = false;
 		for (String strPid : lists) {
 			try {
 				Place tmp = new Place();
 				tmp.setTarget(target);
 				tmp.setPid(strPid);
 				placeRep.save(tmp);
+				chk = true;
 			} catch (Exception e) {
 				logger.info("실시간 중복 :" + e.getMessage());
 			}
 		}
 
-		try {
+		if (chk)
 			placeRep.flush();
-		} catch(Exception e) {
-			
-		}
 	}
 
 	/**
@@ -84,20 +85,19 @@ public class StateServiceImpl implements StateService {
 	 *            위치 삭제
 	 */
 	private void deletePlace(Target target, Collection<String> lists) {
+		boolean chk = false;
 		for (String strPid : lists) {
 			try {
 				logger.debug("deletePlace ======> " + strPid + "  target.getId() ===> " + target.getId());
 				placeRep.deletebypid(strPid);
+				chk = true;
 			} catch (Exception e) {
 				logger.info("삭제 실패 : " + e.getMessage());
 			}
 		}
 		
-		try {
+		if (chk)
 			placeRep.flush();
-		} catch(Exception e) {
-			
-		}
 	}
 
 	@Override
